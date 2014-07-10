@@ -117,7 +117,7 @@ public class Order {
         final StringBuilder sb = new StringBuilder("Order{");
         sb.append("id=").append(id);
         sb.append(", vendor='").append(vendor).append('\'');
-        sb.append(", orderDate=").append(orderDate);
+        sb.append(", expectedAt=").append(expectedAt);
         sb.append(", claimedDate=").append(claimedDate);
         sb.append(", claimedBy='").append(claimedBy).append('\'');
         sb.append(", offeredBy='").append(offeredBy).append('\'');

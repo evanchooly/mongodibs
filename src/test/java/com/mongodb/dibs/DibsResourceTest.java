@@ -81,7 +81,7 @@ public class DibsResourceTest {
         Order order = new Order();
         order.setVendor(vendor);
         order.setGroup(group);
-        order.setOrderDate(new DateTime(2014, 7, 10, 11, 45).toDate());
+        order.setExpectedAt(new DateTime(2014, 7, 10, 11, 45).toDate());
         order.setContents("yum " + count);
         datastore.save(order);
     }

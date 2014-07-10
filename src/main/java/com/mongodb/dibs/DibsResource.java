@@ -53,8 +53,8 @@ public class DibsResource {
         boolean groupOrder = type.equalsIgnoreCase("group");
         Query<Order> query = ds.createQuery(Order.class)
                                .filter("group", groupOrder)
-                               .field("orderDate").greaterThanOrEq(dateTime.toDate())
-                               .field("orderDate").lessThan(next.toDate());
+                               .field("expectedAt").greaterThanOrEq(dateTime.toDate())
+                               .field("expectedAt").lessThan(next.toDate());
 
         return groupOrder ? findGroupOrders(query) : findSingleOrders(query);
     }
