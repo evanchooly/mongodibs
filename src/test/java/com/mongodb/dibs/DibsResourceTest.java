@@ -1,6 +1,5 @@
 package com.mongodb.dibs;
 
-import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.BasicDBObject;
@@ -57,9 +56,7 @@ public class DibsResourceTest {
     }
 
     private JsonNode parseResponse(final String response) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        JsonFactory factory = mapper.getFactory();
-        return mapper.readTree(factory.createParser(response));
+        return new ObjectMapper().readTree(response);
     }
 
     @Test

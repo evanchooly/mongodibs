@@ -73,8 +73,15 @@ public class DibsResource {
         return null;
     }
 
+    @POST
+    @Path("/claim/{order}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response claim() {
+        return null;
+    }
+
     private String findSingleOrders(final Query<Order> query) throws JsonProcessingException {
-        MorphiaIterator<Order, Order> iterator = query.order("offeredBy").fetch();
+        MorphiaIterator<Order, Order> iterator = query.order("orderedBy").fetch();
         List<Order> orders = new ArrayList<>();
         try {
             for (Order order : iterator) {

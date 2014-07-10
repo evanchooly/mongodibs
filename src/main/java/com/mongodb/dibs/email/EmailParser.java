@@ -8,7 +8,6 @@ import org.jsoup.nodes.Node;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class EmailParser {
@@ -31,7 +30,7 @@ public class EmailParser {
 
     public Order parse(String from, String body) {
         Order order = new Order();
-        order.setOfferedBy(from);
+        order.setOrderedBy(from);
 
         Document document = Jsoup.parse(body);
 

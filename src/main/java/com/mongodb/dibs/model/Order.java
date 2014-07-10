@@ -10,9 +10,10 @@ import org.mongodb.morphia.annotations.Version;
 import java.util.Date;
 
 @Entity("orders")
-@Indexes(
-            @Index("expectedAt, vendor")
-)
+@Indexes({
+             @Index("expectedAt, vendor"),
+             @Index("expectedAt, orderedBy")
+         })
 public class Order {
     @Id
     private ObjectId id;
@@ -20,11 +21,11 @@ public class Order {
     private Date expectedAt;
     private Date claimedDate;
     private String claimedBy;
-    private String offeredBy;
+    private String orderedBy;
     private String contents;
     private Boolean group;
     private Boolean upForGrabs = Boolean.FALSE;
-    
+
     @Version
     private Long version;
 
@@ -80,12 +81,12 @@ public class Order {
         this.claimedBy = claimedBy;
     }
 
-    public String getOfferedBy() {
-        return offeredBy;
+    public String getOrderedBy() {
+        return orderedBy;
     }
 
-    public void setOfferedBy(final String offeredBy) {
-        this.offeredBy = offeredBy;
+    public void setOrderedBy(final String orderedBy) {
+        this.orderedBy = orderedBy;
     }
 
     public String getContents() {
@@ -120,7 +121,7 @@ public class Order {
         sb.append(", expectedAt=").append(expectedAt);
         sb.append(", claimedDate=").append(claimedDate);
         sb.append(", claimedBy='").append(claimedBy).append('\'');
-        sb.append(", offeredBy='").append(offeredBy).append('\'');
+        sb.append(", orderedBy='").append(orderedBy).append('\'');
         sb.append(", contents='").append(contents).append('\'');
         sb.append(", group=").append(group);
         sb.append(", upForGrabs=").append(upForGrabs);
