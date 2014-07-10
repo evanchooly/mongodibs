@@ -8,6 +8,7 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
 import org.eclipse.jetty.server.session.SessionHandler;
+import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
 public class DibsApplication extends Application<DibsConfiguration> {
@@ -30,8 +31,11 @@ public class DibsApplication extends Application<DibsConfiguration> {
         
         environment.getApplicationContext().setSessionsEnabled(true);
         environment.getApplicationContext().setSessionHandler(new SessionHandler());
+
+        Datastore datastore = morphia.createDatastore(mongo, "mongo-dibs");
+        datastore.ensureIndexes();
         
-        environment.jersey().register(new DibsResource(morphia.createDatastore(mongo, "mongo-dibs")));
+        environment.jersey().register(new DibsResource(datastore));
     }
 
     public static void main(String[] args) throws Exception {

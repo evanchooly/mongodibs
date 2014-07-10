@@ -111,4 +111,20 @@ public class Order {
     public void setUpForGrabs(final Boolean upForGrabs) {
         this.upForGrabs = upForGrabs;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Order{");
+        sb.append("id=").append(id);
+        sb.append(", vendor='").append(vendor).append('\'');
+        sb.append(", orderDate=").append(orderDate);
+        sb.append(", claimedDate=").append(claimedDate);
+        sb.append(", claimedBy='").append(claimedBy).append('\'');
+        sb.append(", offeredBy='").append(offeredBy).append('\'');
+        sb.append(", contents='").append(contents).append('\'');
+        sb.append(", group=").append(group);
+        sb.append(", upForGrabs=").append(upForGrabs);
+        sb.append('}');
+        return sb.toString();
+    }
 }
