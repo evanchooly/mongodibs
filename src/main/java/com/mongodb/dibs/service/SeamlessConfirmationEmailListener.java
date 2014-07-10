@@ -2,6 +2,8 @@ package com.mongodb.dibs.service;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.dibs.email.EmailParser;
+import com.mongodb.dibs.model.Order;
 import com.mongodb.dibs.model.SeamlessConfirmation;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.mail.util.MimeMessageParser;
@@ -41,6 +43,7 @@ public class SeamlessConfirmationEmailListener implements SimpleMessageListener 
     private final static Pattern subjectRegex = Pattern.compile("Confirmed!\\s+(.*?)\\s+received your order. Estimated Delivery:\\s+(.*)$");
     public final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("h:m a M/d/yy");
 
+    private final EmailParser emailParser = new EmailParser();
     private final Session session;
     private final Datastore ds;
 
@@ -57,6 +60,7 @@ public class SeamlessConfirmationEmailListener implements SimpleMessageListener 
 
         final Morphia morphia = new Morphia();
         morphia.map(SeamlessConfirmation.class);
+        morphia.map(Order.class);
         ds = morphia.createDatastore(mongo, "mongodibs");
         ds.ensureIndexes();
     }
@@ -74,11 +78,25 @@ public class SeamlessConfirmationEmailListener implements SimpleMessageListener 
         throws TooMuchDataException, IOException
     {
         try {
-            ds.save(parseMessage(new MimeMessage(session, data)));
+            final SeamlessConfirmation seamlessConfirmation = parseMessage(new MimeMessage(session, data));
+            ds.save(seamlessConfirmation);
+
+            final Order order = emailParser.parse(from, seamlessConfirmation.getBody());
+
+            if (!validate(seamlessConfirmation, order)) {
+                throw new Exception("Email could not be parsed");
+            }
+
+            ds.save(order);
         } catch (final Exception e) {
             // TODO send failure email
             e.printStackTrace();
         }
+    }
+
+    public boolean validate(final SeamlessConfirmation seamlessConfirmation, final Order order) {
+        return seamlessConfirmation.getVendor().equals(order.getVendor()) &&
+            seamlessConfirmation.getExpectedAt().equals(order.getExpectedAt());
     }
 
     public static SeamlessConfirmation parseMessage(final MimeMessage message) throws Exception {

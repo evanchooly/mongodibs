@@ -6,12 +6,9 @@ import com.mongodb.dibs.model.Order;
 import io.dropwizard.views.View;
 import org.mongodb.morphia.Datastore;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -45,5 +42,19 @@ public class DibsResource {
           .filter("group", type.equalsIgnoreCase("group"))
           .order("vendor");
         return mapper.writeValueAsString(new BasicDBObject("bob",date));
+    }
+
+    @POST
+    @Path("/notify/{date}/vendor/{vendor}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response notifyGroup() {
+        return null;
+    }
+
+    @POST
+    @Path("/notify/{date}/order/{order}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response notifyOrder() {
+        return null;
     }
 }

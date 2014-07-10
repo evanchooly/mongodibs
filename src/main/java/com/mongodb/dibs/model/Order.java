@@ -11,13 +11,13 @@ import java.util.Date;
 
 @Entity("orders")
 @Indexes(
-            @Index("orderDate, vendor")
+            @Index("expectedAt, vendor")
 )
 public class Order {
     @Id
     private ObjectId id;
     private String vendor;
-    private Date orderDate;
+    private Date expectedAt;
     private Date claimedDate;
     private String claimedBy;
     private String offeredBy;
@@ -56,12 +56,12 @@ public class Order {
         this.vendor = vendor;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
+    public Date getExpectedAt() {
+        return expectedAt;
     }
 
-    public void setOrderDate(final Date orderDate) {
-        this.orderDate = orderDate;
+    public void setExpectedAt(final Date expectedAt) {
+        this.expectedAt = expectedAt;
     }
 
     public Date getClaimedDate() {
