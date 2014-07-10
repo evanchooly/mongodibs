@@ -58,21 +58,21 @@ public class DibsResource {
 
         return groupOrder ? findGroupOrders(query) : findSingleOrders(query);
     }
-    
+
     @POST
-       @Path("/notify/{date}/vendor/{vendor}")
-       @Produces(MediaType.APPLICATION_JSON)
-       public Response notifyGroup() {
-           return null;
-       }
-   
-       @POST
-       @Path("/notify/{date}/order/{order}")
-       @Produces(MediaType.APPLICATION_JSON)
-       public Response notifyOrder() {
-           return null;
-       }
-    
+    @Path("/notify/{date}/vendor/{vendor}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response notifyGroup() {
+        return null;
+    }
+
+    @POST
+    @Path("/notify/{date}/order/{order}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response notifyOrder() {
+        return null;
+    }
+
     private String findSingleOrders(final Query<Order> query) throws JsonProcessingException {
         MorphiaIterator<Order, Order> iterator = query.order("offeredBy").fetch();
         List<Order> orders = new ArrayList<>();
@@ -92,7 +92,7 @@ public class DibsResource {
         try {
             for (Order order : iterator) {
                 List<Order> list = orders.get(order.getVendor());
-                if(list == null) {
+                if (list == null) {
                     list = new ArrayList<>();
                     orders.put(order.getVendor(), list);
                 }
@@ -107,7 +107,7 @@ public class DibsResource {
     public static class GroupOrder {
         private String vendor;
         private List<Order> orders = new ArrayList<>();
-        
+
         public void add(Order order) {
             orders.add(order);
         }

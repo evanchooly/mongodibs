@@ -19,9 +19,6 @@ import org.mongodb.morphia.Morphia;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-/**
- * Unit test for simple DibsApplication.
- */
 public class DibsResourceTest {
     @ClassRule
     public static final ResourceTestRule resources;
