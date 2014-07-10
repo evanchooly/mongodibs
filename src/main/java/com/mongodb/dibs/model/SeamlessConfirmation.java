@@ -16,7 +16,7 @@ public class SeamlessConfirmation {
     private final ObjectId id;
 
     @Property("email")
-    private final Address email;
+    private final String email;
 
     @Property("vendor")
     private final String vendor;
@@ -30,14 +30,13 @@ public class SeamlessConfirmation {
     @Property("body")
     private final String body;
 
-    private SeamlessConfirmation(
-        final ObjectId id,
-        final Address email,
+    public SeamlessConfirmation(
+        final String email,
         final String vendor,
         final Date expectedAt,
         final List<Map<String, String>> headers,
         final String body) {
-        this.id = id;
+        this.id = new ObjectId();
         this.email = email;
         this.vendor = vendor;
         this.expectedAt = expectedAt;
@@ -49,7 +48,7 @@ public class SeamlessConfirmation {
         return id;
     }
 
-    public Address getEmail() {
+    public String getEmail() {
         return email;
     }
 
