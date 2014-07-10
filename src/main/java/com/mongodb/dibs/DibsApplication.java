@@ -46,7 +46,7 @@ public class DibsApplication extends Application<DibsConfiguration> {
                 createTestOrder(datastore, i, "Vendor " + (i % 5), true);
             }
             for (int i = 0; i < 10; i++) {
-                createTestOrder(datastore, i, "Awesome Vendor", false);
+                createTestOrder(datastore, i, "Awesome Vendor " + i, false);
             }
         }
 
@@ -56,7 +56,7 @@ public class DibsApplication extends Application<DibsConfiguration> {
         Order order = new Order();
         order.setVendor(vendor);
         order.setGroup(group);
-        order.setExpectedAt(new DateTime(2014, 7, 10, 11, 45).toDate());
+        order.setExpectedAt(DateTime.now().withTime(11, 45, 0, 0).toDate());
         order.setContents("yum " + count);
         ds.save(order);
     }
