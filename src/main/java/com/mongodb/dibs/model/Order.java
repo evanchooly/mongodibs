@@ -22,6 +22,8 @@ public class Order {
     private String claimedBy;
     private String offeredBy;
     private String contents;
+    private Boolean group;
+    
     @Version
     private Long version;
 
@@ -31,6 +33,18 @@ public class Order {
 
     public void setId(final ObjectId id) {
         this.id = id;
+    }
+
+    public Boolean isGroup() {
+        return group;
+    }
+
+    public Boolean getGroup() {
+        return group;
+    }
+
+    public void setGroup(final Boolean group) {
+        this.group = group;
     }
 
     public String getVendor() {
