@@ -1,19 +1,20 @@
 package com.mongodb.dibs.model;
 
 import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Id;
-import org.mongodb.morphia.annotations.Property;
+import org.mongodb.morphia.annotations.*;
 
 import javax.mail.Address;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-@Entity("seamless.confirmations")
+@Entity(value="seamless.confirmations", noClassnameStored=true)
+@Indexes({
+    @Index("-expectedAt, vendor, email")
+})
 public class SeamlessConfirmation {
     @Id
-    private final ObjectId id;
+    private final ObjectId id = new ObjectId();
 
     @Property("email")
     private final String email;
@@ -36,7 +37,6 @@ public class SeamlessConfirmation {
         final Date expectedAt,
         final List<Map<String, String>> headers,
         final String body) {
-        this.id = new ObjectId();
         this.email = email;
         this.vendor = vendor;
         this.expectedAt = expectedAt;

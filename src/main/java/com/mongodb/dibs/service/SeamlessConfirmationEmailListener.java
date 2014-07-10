@@ -19,6 +19,7 @@ import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.UnknownHostException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -37,7 +38,7 @@ public class SeamlessConfirmationEmailListener implements SimpleMessageListener 
     }
 
     private final static Pattern subjectRegex = Pattern.compile("Confirmed!\\s+(.*?)\\s+received your order. Estimated Delivery:\\s+(.*)$");
-    private final static SimpleDateFormat sdf = new SimpleDateFormat("h:m a M/d/yy");
+    public final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("h:m a M/d/yy");
 
     private final Session session;
     private final Datastore ds;
@@ -56,6 +57,7 @@ public class SeamlessConfirmationEmailListener implements SimpleMessageListener 
         final Morphia morphia = new Morphia();
         morphia.map(SeamlessConfirmation.class);
         ds = morphia.createDatastore(mongo, "mongodibs");
+        ds.ensureIndexes();
     }
 
     @Override
@@ -71,22 +73,27 @@ public class SeamlessConfirmationEmailListener implements SimpleMessageListener 
         throws TooMuchDataException, IOException
     {
         try {
-            final MimeMessage message = new MimeMessage(session, data);
-            final MimeMessageParser parser = new MimeMessageParser(message).parse();
-            final Address to = parser.getTo().get(0);
-            final String subject = parser.getSubject();
-            final Matcher matcher = subjectRegex.matcher(subject);
-
-            if (matcher.matches()) {
-                final String vendor = matcher.group(1);
-                final Date expectedAt = sdf.parse(matcher.group(2).replaceAll("\\.", "").replace(", on", ""));
-                final List<Map<String, String>> headers = getHeadersList(message);
-                ds.save(new SeamlessConfirmation(to.toString(), vendor, expectedAt, headers, parser.getHtmlContent()));
-            }
+            ds.save(parseMessage(new MimeMessage(session, data)));
         } catch (final Exception e) {
             // TODO send failure email
             e.printStackTrace();
         }
+    }
+
+    public static SeamlessConfirmation parseMessage(final MimeMessage message) throws Exception {
+        final MimeMessageParser parser = new MimeMessageParser(message).parse();
+        final Address to = parser.getTo().get(0);
+        final String subject = parser.getSubject();
+        final Matcher matcher = subjectRegex.matcher(subject);
+
+        if (!matcher.matches()) {
+            throw new ParseException("Unable to parse subject", 0);
+        }
+
+        final String vendor = matcher.group(1);
+        final Date expectedAt = DATE_FORMAT.parse(matcher.group(2).replaceAll("\\.", "").replace(", on", ""));
+        final List<Map<String, String>> headers = getHeadersList(message);
+        return new SeamlessConfirmation(to.toString(), vendor, expectedAt, headers, parser.getHtmlContent());
     }
 
     private static List<Map<String, String>> getHeadersList(final MimeMessage message) throws MessagingException {
