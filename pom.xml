@@ -76,6 +76,24 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.3.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>com.mongodb.dibs.DibsApplication</mainClass>
+                    <arguments>
+                        <argument>server</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <dependencies>

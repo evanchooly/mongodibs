@@ -11,7 +11,7 @@ public class EmailParserTest {
 
     private EmailParser emailParser = new EmailParser();
 
-    @Test
+    @Tejst
     public void testIndividualParse() throws Exception {
         Assert.assertFalse(emailParser.parse("test@example.com", readBody("seamless-email.html")).isGroup());
     }
