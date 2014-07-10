@@ -23,6 +23,7 @@ public class Order {
     private String offeredBy;
     private String contents;
     private Boolean group;
+    private Boolean upForGrabs = Boolean.FALSE;
     
     @Version
     private Long version;
@@ -101,5 +102,13 @@ public class Order {
 
     public void setVersion(final Long version) {
         this.version = version;
+    }
+
+    public Boolean getUpForGrabs() {
+        return upForGrabs;
+    }
+
+    public void setUpForGrabs(final Boolean upForGrabs) {
+        this.upForGrabs = upForGrabs;
     }
 }
