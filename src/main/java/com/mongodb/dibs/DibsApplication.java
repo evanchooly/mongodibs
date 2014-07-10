@@ -32,6 +32,7 @@ public class DibsApplication extends Application<DibsConfiguration> {
         mongo = new MongoClient();
         environment.getApplicationContext().setSessionsEnabled(true);
         environment.getApplicationContext().setSessionHandler(new SessionHandler());
+        environment.healthChecks().register("dibs", new DibsHealthCheck());
 
         Datastore datastore = morphia.createDatastore(mongo, "mongo-dibs");
         datastore.ensureIndexes();
