@@ -3,7 +3,10 @@ package com.mongodb.dibs;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClient;
-import com.amazonaws.services.simpleemail.model.*;
+import com.amazonaws.services.simpleemail.model.Content;
+import com.amazonaws.services.simpleemail.model.Destination;
+import com.amazonaws.services.simpleemail.model.Message;
+import com.amazonaws.services.simpleemail.model.SendEmailRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.base.Charsets;
 import com.mongodb.dibs.model.Order;
@@ -24,8 +27,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.xml.ws.Response;
 import java.io.IOException;
-import java.text.*;
-import java.util.*;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Path("/")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -66,10 +73,9 @@ public class DibsResource {
     @Path("/notify/{date}/vendor/{vendor}")
     @Produces(MediaType.APPLICATION_JSON)
     public String notifyGroup(
-        @PathParam("date") final String dateString,
-        @PathParam("vendor") final String vendor)
-        throws ParseException
-    {
+                                 @PathParam("date") final String dateString,
+                                 @PathParam("vendor") final String vendor)
+        throws ParseException {
         final DateTime dateTime = DateTime.parse(dateString, DateTimeFormat.forPattern("yyyy-MM-dd"));
         final DateTime next = dateTime.plusDays(1);
         final Query<Order> query = ds.createQuery(Order.class)
@@ -94,10 +100,9 @@ public class DibsResource {
     @Path("/notify/{date}/order/{order}")
     @Produces(MediaType.APPLICATION_JSON)
     public String notifyOrder(
-        @PathParam("date") final String dateString,
-        @PathParam("order") final String orderId)
-        throws ParseException
-    {
+                                 @PathParam("date") final String dateString,
+                                 @PathParam("order") final String orderId)
+        throws ParseException {
         final DateTime dateTime = DateTime.parse(dateString, DateTimeFormat.forPattern("yyyy-MM-dd"));
         final DateTime next = dateTime.plusDays(1);
         final Query<Order> query = ds.createQuery(Order.class)
@@ -126,7 +131,7 @@ public class DibsResource {
 
     private void notify(final String email, final Order order) {
         final BasicAWSCredentials creds = new BasicAWSCredentials(
-            "asdf", "asdasdf");
+                                                                     "asdf", "asdasdf");
         final ClientConfiguration awsConf = new ClientConfiguration();
         awsConf.setConnectionTimeout(30000);
         awsConf.setMaxConnections(200);
@@ -157,20 +162,15 @@ public class DibsResource {
 
     private String findGroupOrders(final Query<Order> query) throws JsonProcessingException {
         MorphiaIterator<Order, Order> iterator = query.fetch();
-        Map<String, List<Order>> orders = new LinkedHashMap<>();
+        Set<String> vendors = new TreeSet<>();
         try {
             for (Order order : iterator) {
-                List<Order> list = orders.get(order.getVendor());
-                if (list == null) {
-                    list = new ArrayList<>();
-                    orders.put(order.getVendor(), list);
-                }
-                list.add(order);
+                vendors.add(order.getVendor());
             }
         } finally {
             iterator.close();
         }
-        return mapper.writeValueAsString(orders);
+        return mapper.writeValueAsString(vendors);
     }
 
     public static class GroupOrder {

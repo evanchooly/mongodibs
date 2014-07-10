@@ -50,9 +50,6 @@ public class DibsResourceTest {
         String response = resource.get(String.class);
         JsonNode json = parseResponse(response);
         Assert.assertEquals(5, json.size());
-        for (JsonNode jsonNode : json) {
-            Assert.assertEquals(20, jsonNode.size());
-        }
     }
 
     private JsonNode parseResponse(final String response) throws IOException {

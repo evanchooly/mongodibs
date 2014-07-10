@@ -41,10 +41,6 @@ public class Order {
         return group;
     }
 
-    public Boolean getGroup() {
-        return group;
-    }
-
     public void setGroup(final Boolean group) {
         this.group = group;
     }
