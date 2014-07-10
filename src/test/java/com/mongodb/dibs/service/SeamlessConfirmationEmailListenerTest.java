@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class SeamlessConfirmationEmailListenerTest {
     private final static String TEST_DATETIME = "11:45 am 7/2/14";
@@ -28,6 +29,16 @@ public class SeamlessConfirmationEmailListenerTest {
         if (emailInput != null) {
             emailInput.close();
         }
+    }
+
+    @Test
+    public void disallowRecipient() {
+        assertFalse(new SeamlessConfirmationEmailListener().accept(null, "asdfasdf"));
+    }
+
+    @Test
+    public void allowRecipient() {
+        assertTrue(new SeamlessConfirmationEmailListener().accept(null, "seamless@helloworld"));
     }
 
     @Test

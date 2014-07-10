@@ -3,6 +3,7 @@ package com.mongodb.dibs.service;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.dibs.model.SeamlessConfirmation;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.mail.util.MimeMessageParser;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
@@ -62,7 +63,7 @@ public class SeamlessConfirmationEmailListener implements SimpleMessageListener 
 
     @Override
     public boolean accept(final String from, final String recipient) {
-        return true;
+        return !StringUtils.isBlank(recipient) && recipient.startsWith("seamless");
     }
 
     @Override
