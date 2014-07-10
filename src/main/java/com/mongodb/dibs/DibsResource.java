@@ -1,6 +1,7 @@
 package com.mongodb.dibs;
 
 import com.google.common.base.Charsets;
+import com.mongodb.BasicDBObject;
 import com.mongodb.dibs.model.Order;
 import io.dropwizard.views.View;
 import org.mongodb.morphia.Datastore;
@@ -12,6 +13,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Path("/")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -34,10 +38,12 @@ public class DibsResource {
     @GET
     @Path("/orders/{date}/{type}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String groupOrders(@PathParam("date") String date, @PathParam("type") String type) throws IOException {
+    public String groupOrders(@PathParam("date") String dateString, @PathParam("type") String type) throws IOException, ParseException {
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
+//        DateTime.parse()
         ds.createQuery(Order.class)
           .filter("group", type.equalsIgnoreCase("group"))
           .order("vendor");
-        return mapper.writeValueAsString("");
+        return mapper.writeValueAsString(new BasicDBObject("bob",date));
     }
 }
