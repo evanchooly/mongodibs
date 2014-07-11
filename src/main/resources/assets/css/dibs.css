@@ -7,3 +7,11 @@ div.dashboard {
 .btn-sm {
   margin: 10px;
 }
+
+body {
+  background-image: url("../images/logo.png");
+  background-size: cover;
+  background-position: center -100px;
+  background-repeat: no-repeat;
+  padding-top: 12em;
+}

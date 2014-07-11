@@ -15,8 +15,6 @@
 
     <body ng-controller="GrabsListCtrl">
 
-      <h1>MongoDiBs dibs</h1>
-
       <div class="dashboard">
 
         <div>

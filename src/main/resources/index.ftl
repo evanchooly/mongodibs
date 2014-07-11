@@ -15,8 +15,6 @@
 
     <body ng-controller="OrdersListCtrl">
 
-      <h1>MongoDiBs Notifications</h1>
-
       <div class="dashboard">
 
         <div>
