@@ -25,7 +25,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.xml.ws.Response;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -97,19 +96,11 @@ public class DibsResource {
     }
 
     @POST
-    @Path("/notify/{date}/order/{order}")
+    @Path("/notify/order")
     @Produces(MediaType.APPLICATION_JSON)
-    public String notifyOrder(
-                                 @PathParam("date") final String dateString,
-                                 @PathParam("order") final String orderId)
-        throws ParseException {
-        final DateTime dateTime = DateTime.parse(dateString, DateTimeFormat.forPattern("yyyy-MM-dd"));
-        final DateTime next = dateTime.plusDays(1);
-        final Query<Order> query = ds.createQuery(Order.class)
-                                     .filter("_id", new ObjectId(orderId))
-                                     .field("expectedAt").greaterThanOrEq(dateTime)
-                                     .field("expectedAt").lessThan(next);
-        final Order order = query.get();
+    public String notifyOrder(final String orderId) throws ParseException {
+        final Order order = ds.createQuery(Order.class)
+                              .filter("_id", new ObjectId(orderId)).get();
 
         if (order != null) {
             if (order.getClaimedBy() != null) {
@@ -125,8 +116,19 @@ public class DibsResource {
     @POST
     @Path("/claim/{order}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response claim() {
-        return null;
+    public String claim(@PathParam("order") final String orderId) {
+        final Order order = ds.createQuery(Order.class)
+                              .filter("_id", new ObjectId(orderId)).get();
+
+        if (order != null) {
+            if (order.getClaimedBy() != null) {
+                notify(order.getClaimedBy(), order);
+            } else if (order.getOrderedBy() != null) {
+                notify(order.getOrderedBy(), order);
+            }
+        }
+
+        return OK_RESPONSE;
     }
 
     private void notify(final String email, final Order order) {
@@ -171,14 +173,5 @@ public class DibsResource {
             iterator.close();
         }
         return mapper.writeValueAsString(vendors);
-    }
-
-    public static class GroupOrder {
-        private String vendor;
-        private List<Order> orders = new ArrayList<>();
-
-        public void add(Order order) {
-            orders.add(order);
-        }
     }
 }
