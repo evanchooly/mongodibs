@@ -69,12 +69,9 @@ public class DibsResource {
     }
 
     @POST
-    @Path("/notify/{date}/vendor/{vendor}")
+    @Path("/notify/vendor/")
     @Produces(MediaType.APPLICATION_JSON)
-    public String notifyGroup(
-                                 @PathParam("date") final String dateString,
-                                 @PathParam("vendor") final String vendor)
-        throws ParseException {
+    public String notifyGroup(final String dateString, final String vendor) throws ParseException {
         final DateTime dateTime = DateTime.parse(dateString, DateTimeFormat.forPattern("yyyy-MM-dd"));
         final DateTime next = dateTime.plusDays(1);
         final Query<Order> query = ds.createQuery(Order.class)
