@@ -15,19 +15,20 @@
 
     <body ng-controller="OrdersListCtrl">
 
+      <h1>MongoDiBs</h1>
+
       <div class="test">
 
-        <div ng-controller="TabsDemoCtrl">
-          <hr />
+        <div>
         
           <tabset>
             <tab heading="Group Orders">
   
-              Search: <input ng-model="query">  
+              Find: <input ng-model="query">  
               
               <ul class="orders">
                 <li ng-repeat="vendor in groupOrders | filter:query">
-                  <p>{{vendor}} <button class="btn btn-default btn-sm" ng-click="notify()">Notify!</button> </p>
+                  <p>{{vendor}} <button id="{{vendor}}" class="btn btn-default btn-sm" ng-click="notifyGroup($event)">Notify!</button> </p>
                 </li>
               </ul>
   
@@ -38,7 +39,9 @@
   
               <ul class="orders">
                 <li ng-repeat="order in singleOrders | filter:query">
-                  <p>{{order.orderedBy}} - {{order.vendor}}<button class="btn btn-default btn-sm" ng-click="notify()">Notify!</button> </p>
+                  <p>{{order.orderedBy}} - {{order.vendor}}
+                    <button id="{{order.id}}" class="btn btn-default btn-sm" ng-click="notifySingle($event)">Notify!</button>
+                  </p>
                 </li>
               </ul>
   
