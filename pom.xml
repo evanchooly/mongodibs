@@ -91,6 +91,7 @@
                     <mainClass>com.mongodb.dibs.DibsApplication</mainClass>
                     <arguments>
                         <argument>server</argument>
+                        <argument>dibs.yml</argument>
                     </arguments>
                 </configuration>
             </plugin>
