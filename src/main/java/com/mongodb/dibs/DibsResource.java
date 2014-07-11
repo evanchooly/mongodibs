@@ -93,15 +93,15 @@ public class DibsResource {
     }
 
     @POST
-    @Path("/notify/vendor/")
+    @Path("/notify/{date}/vendor/")
     @Produces(MediaType.APPLICATION_JSON)
-    public String notifyGroup(final String dateString, final String vendor) throws ParseException {
+    public String notifyGroup(@PathParam("date") final String dateString, final String vendor) throws ParseException {
         final DateTime dateTime = DateTime.parse(dateString, DateTimeFormat.forPattern("yyyy-MM-dd"));
         final DateTime next = dateTime.plusDays(1);
         final Query<Order> query = ds.createQuery(Order.class)
                                      .filter("vendor", vendor)
-                                     .field("expectedAt").greaterThanOrEq(dateTime)
-                                     .field("expectedAt").lessThan(next);
+                                     .field("expectedAt").greaterThanOrEq(dateTime.toDate())
+                                     .field("expectedAt").lessThan(next.toDate());
         for (final Order o : query.fetch()) {
             if (o.getClaimedBy() != null) {
                 notifyDelivery(o.getClaimedBy(), o);
@@ -139,14 +139,14 @@ public class DibsResource {
     @POST
     @Path("/claim")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.TEXT_PLAIN)    
-    public String claim(final String orderId, final String email) {
+    @Consumes(MediaType.APPLICATION_JSON)    
+    public String claim(final Order claimed) {
         final Order order = ds.createQuery(Order.class)
-                              .filter("_id", new ObjectId(orderId)).get();
+                              .filter("_id", claimed.getId()).get();
 
         if (order != null) {
             if (order.getUpForGrabs() && order.getClaimedBy() != null) {
-                order.setClaimedBy("" /* FIXME */);
+//                order.setClaimedBy(claimed.ge);
                 notifyClaim(order.getClaimedBy(), order);
                 ds.save(order);
             } else {
@@ -179,7 +179,11 @@ public class DibsResource {
     }
 
     private String findSingleOrders(final Query<Order> query) throws JsonProcessingException {
-        MorphiaIterator<Order, Order> iterator = query.order("orderedBy").fetch();
+        MorphiaIterator<Order, Order> iterator = query
+                                                     .field("group").equal(false)
+                                                     .field("upForGrabs").equal(false)
+                                                     .order("orderedBy")
+                                                     .fetch();
         List<Order> orders = new ArrayList<>();
         try {
             for (Order order : iterator) {
@@ -207,7 +211,10 @@ public class DibsResource {
     }
 
     private String findGroupOrders(final Query<Order> query) throws JsonProcessingException {
-        MorphiaIterator<Order, Order> iterator = query.fetch();
+        MorphiaIterator<Order, Order> iterator = query
+                                                     .field("group").equal(true)
+                                                     .field("upForGrabs").equal(false)
+                                                     .fetch();
         Set<String> vendors = new TreeSet<>();
         try {
             for (Order order : iterator) {
