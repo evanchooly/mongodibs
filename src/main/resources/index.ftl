@@ -26,7 +26,7 @@
               Search: <input ng-model="query">  
               
               <ul class="orders">
-                <li ng-repeat="vendor in vendors | filter:query">
+                <li ng-repeat="vendor in groupOrders | filter:query">
                   <p>{{vendor}} <button class="btn btn-default btn-sm" ng-click="notify()">Notify!</button> </p>
                 </li>
               </ul>
@@ -37,8 +37,8 @@
               Search: <input ng-model="query">  
   
               <ul class="orders">
-                <li ng-repeat="order in iorders | filter:query">
-                  <p>{{order.vendor}} <button class="btn btn-default btn-sm" ng-click="status.open = !status.open">Notify!</button> </p>
+                <li ng-repeat="order in singleOrders | filter:query">
+                  <p>{{order.orderedBy}} - {{order.vendor}}<button class="btn btn-default btn-sm" ng-click="notify()">Notify!</button> </p>
                 </li>
               </ul>
   
