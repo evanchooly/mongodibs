@@ -54,6 +54,14 @@ public class DibsResource {
     }
 
     @GET
+    @Path("dibs")
+    @Produces("text/html;charset=ISO-8859-1")
+    public View dibs() {
+        return new View("/dibs.ftl", Charsets.ISO_8859_1) {
+        };
+    }
+
+    @GET
     @Path("/orders/{date}/{type}")
     @Produces(MediaType.APPLICATION_JSON)
     public String findOrders(@PathParam("date") String dateString, @PathParam("type") String type) throws IOException, ParseException {
@@ -87,7 +95,7 @@ public class DibsResource {
             if (o.getOrderedBy() != null) {
                 notify(o.getOrderedBy(), o);
             }
-        }
+        }   
 
         return OK_RESPONSE;
     }
