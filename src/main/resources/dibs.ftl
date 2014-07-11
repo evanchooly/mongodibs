@@ -13,19 +13,21 @@
     <link rel="stylesheet" type="text/css" href="assets/css/dibs.css">
 </head>
 
-    <body ng-controller="OrdersListCtrl">
+    <body ng-controller="GrabsListCtrl">
 
-      <h1>MongoDiBs</h1>
+      <h1>MongoDiBs dibs</h1>
 
-      <div class="test">
+      <div class="dashboard">
 
         <div>
   
           Find: <input ng-model="query">  
           
           <ul class="orders">
-            <li ng-repeat="vendor in groupOrders | filter:query">
-              <p>{{vendor}} <button id="{{vendor}}" class="btn btn-default btn-sm" ng-click="notifyGroup($event)">Notify!</button> </p>
+            <li ng-repeat="order in grabOrders | filter:query">
+                  <p>{{order.orderedBy}} - {{order.vendor}}
+                    <button class="btn btn-default btn-sm" ng-click="notifyClaim($event, order)">Claim!</button>
+                  </p>
             </li>
           </ul>
         

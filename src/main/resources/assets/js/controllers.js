@@ -1,6 +1,7 @@
 var dibsApp = angular.module('dibsApp', ['ui.bootstrap']);
 var groupOrderUrl = "orders/" + dateString() + "/group";
 var singleOrderUrl = "orders/" + dateString() + "/single";
+var grabOrderUrl = "orders/" + dateString() + "/upforgrabs";
 
 dibsApp.controller('OrdersListCtrl', function ($scope, $http) {
 
@@ -13,11 +14,9 @@ dibsApp.controller('OrdersListCtrl', function ($scope, $http) {
   });
 
   // Notify that a single order has been received
-  $scope.notifySingle = function($event) {
-    orderId = $event.target.id;
+  $scope.notifySingle = function(order) {
     url = "/notify/order";
-    $http.post(url, orderId).success(function(data) {
-      var singleOrderUrl = "orders/" + dateString() + "/single";
+    $http.post(url, order.id).success(function(data) {
       $http.get(singleOrderUrl).success(function(data) {
         $scope.singleOrders = data;
       });
@@ -25,19 +24,34 @@ dibsApp.controller('OrdersListCtrl', function ($scope, $http) {
   };
 
   // Notify that a group order has been received
-  $scope.notifyGroup = function($event) {
-    vendor = $event.target.id;
+  $scope.notifyGroup = function(vendor) {
     url = "/notify/" + dateString() + "/vendor";
     $http.post(url, vendor).success(function(data) {
-      var singleOrderUrl = "orders/" + dateString() + "/single";
       $http.get(singleOrderUrl).success(function(data) {
         $scope.singleOrders = data;
       });
     });
   };
-
 });
 //controller
+
+dibsApp.controller('GrabsListCtrl', function ($scope, $http) {
+
+  $http.get(grabOrderUrl).success(function(data) {
+    $scope.grabOrders = data;
+  });
+
+  // Notify that a single order has been received
+  $scope.notifyClaim = function($event, order) {
+    var data = { 'id' : order.id, 'email' : ''}
+    var url = "/claim";
+    $http.post(url, data).success(function(data) {
+      $http.get(grabOrderUrl).success(function(data) {
+        $scope.grabOrders = data;
+      });
+    });
+  };
+});
 
 
 function dateString() {
