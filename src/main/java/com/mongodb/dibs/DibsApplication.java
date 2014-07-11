@@ -51,11 +51,17 @@ public class DibsApplication extends Application<DibsConfiguration> {
             for (int i = 0; i < 10; i++) {
                 createTestOrder(datastore, i, "Awesome Vendor " + i, false);
             }
+            for (int i = 0; i < 10; i++) {
+                Order order = createTestOrder(datastore, i, "Awesome Vendor " + i, false);
+                order.setVendor("Up For Grabs Vendor " + i);
+                order.setUpForGrabs(true);
+                datastore.save(order);
+            }
         }
 
     }
 
-    private void createTestOrder(final Datastore ds, final int count, final String vendor, final boolean group) {
+    private Order createTestOrder(final Datastore ds, final int count, final String vendor, final boolean group) {
         Order order = new Order();
         order.setVendor(vendor);
         order.setGroup(group);
@@ -63,6 +69,7 @@ public class DibsApplication extends Application<DibsConfiguration> {
         order.setContents("yum " + count);
         order.setOrderedBy("Employee " + count);
         ds.save(order);
+        return order;
     }
 
     public static void main(String[] args) throws Exception {

@@ -84,11 +84,12 @@ public class DibsResource {
         DateTime next = dateTime.plusDays(1);
 
         boolean groupOrder = type.equalsIgnoreCase("group");
+        boolean upForGrabs = type.equalsIgnoreCase("upForGrabs");
         Query<Order> query = ds.createQuery(Order.class)
                                .filter("group", groupOrder)
                                .field("expectedAt").greaterThanOrEq(dateTime.toDate())
                                .field("expectedAt").lessThan(next.toDate());
-        return groupOrder ? findGroupOrders(query) : findSingleOrders(query);
+        return groupOrder ? findGroupOrders(query) : (upForGrabs ? findUpForGrabs(query) : findSingleOrders(query));
     }
 
     @POST
@@ -138,8 +139,8 @@ public class DibsResource {
     @POST
     @Path("/claim")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.TEXT_PLAIN)
-    public String claim(final String orderId) {
+    @Consumes(MediaType.TEXT_PLAIN)    
+    public String claim(final String orderId, final String email) {
         final Order order = ds.createQuery(Order.class)
                               .filter("_id", new ObjectId(orderId)).get();
 
@@ -179,6 +180,21 @@ public class DibsResource {
 
     private String findSingleOrders(final Query<Order> query) throws JsonProcessingException {
         MorphiaIterator<Order, Order> iterator = query.order("orderedBy").fetch();
+        List<Order> orders = new ArrayList<>();
+        try {
+            for (Order order : iterator) {
+                orders.add(order);
+            }
+        } finally {
+            iterator.close();
+        }
+        return mapper.writeValueAsString(orders);
+    }
+
+    private String findUpForGrabs(final Query<Order> query) throws JsonProcessingException {
+        MorphiaIterator<Order, Order> iterator = query
+                                                     .field("upForGrabs").equal(true)
+                                                     .order("orderedBy").fetch();
         List<Order> orders = new ArrayList<>();
         try {
             for (Order order : iterator) {

@@ -4,8 +4,8 @@ import com.mongodb.dibs.model.AWSCredentials;
 import io.dropwizard.Configuration;
 
 public class DibsConfiguration extends Configuration {
-    private AWSCredentials awsCredentials;
-    private String mongo;
+    private AWSCredentials awsCredentials = new AWSCredentials();
+    private String mongo = "mongodb://localhost:27017/dibs";
 
     public DibsConfiguration() {}
 

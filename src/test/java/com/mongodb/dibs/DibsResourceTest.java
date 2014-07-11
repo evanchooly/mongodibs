@@ -15,10 +15,13 @@ import org.junit.Test;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DibsResourceTest {
     @ClassRule
@@ -71,7 +74,7 @@ public class DibsResourceTest {
     }
 
     @Test
-    public void testClaim() {
+    public void testClaim() throws MessagingException {
         collection.remove(new BasicDBObject());
         List<Order> orders = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -80,9 +83,12 @@ public class DibsResourceTest {
             datastore.save();
             orders.add(order);
         }
-        WebResource resource = resources.client().resource("/claim");
-        //String response = resource.post(String.class, "{\"_id\": \"" + orders.get(0).getId().toString() + "\"}");
-        String response = resource.post(String.class, orders.get(0).getId().toString());
+        Map<String, String> formParams=new LinkedHashMap<>();
+        formParams.put("orderId", orders.get(0).getId().toString());
+        formParams.put("email", "test@example.com");
+        
+        WebResource resource = resources.client().resource("/claim/");
+        String response = resource.post(String.class, formParams);
     }
 
     private Order createOrder(final int count, final String vendor, final boolean group) {
