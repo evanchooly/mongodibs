@@ -14,6 +14,8 @@ import org.joda.time.DateTime;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
+import java.util.Random;
+
 public class DibsApplication extends Application<DibsConfiguration> {
     private MongoClient mongo;
     private Morphia morphia;
@@ -45,15 +47,19 @@ public class DibsApplication extends Application<DibsConfiguration> {
         if (testdata != null) {
             System.out.println("***  Generating test data ***");
             datastore.getCollection(Order.class).remove(new BasicDBObject());
+            Random random = new Random();
+            String[] vendors = { "Chopt", "Schnippers", "Food Bucket", "Kosher Deluxe", "Baja Fresh (Broadway)"};
             for (int i = 0; i < 100; i++) {
-                createTestOrder(datastore, i, "Vendor " + (i % 5), true);
+                String vendor = vendors[i % 5];
+                createTestOrder(datastore, i, vendor, true);
             }
             for (int i = 0; i < 10; i++) {
-                createTestOrder(datastore, i, "Awesome Vendor " + i, false);
+                String vendor = vendors[i % 5];
+                
+                createTestOrder(datastore, i, vendor, false);
             }
             for (int i = 0; i < 10; i++) {
-                Order order = createTestOrder(datastore, i, "Awesome Vendor " + i, false);
-                order.setVendor("Up For Grabs Vendor " + i);
+                Order order = createTestOrder(datastore, i, vendors[i % 5], false);
                 order.setUpForGrabs(true);
                 datastore.save(order);
             }
