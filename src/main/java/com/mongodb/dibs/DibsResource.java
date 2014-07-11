@@ -8,6 +8,7 @@ import com.amazonaws.services.simpleemail.model.Destination;
 import com.amazonaws.services.simpleemail.model.Message;
 import com.amazonaws.services.simpleemail.model.SendEmailRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.base.Charsets;
 import com.mongodb.dibs.model.Order;
 import io.dropwizard.views.View;
@@ -27,7 +28,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Path("/")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -140,13 +146,14 @@ public class DibsResource {
     @Path("/claim")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)    
-    public String claim(final Order claimed) {
+    public String claim(final JsonNode node) {
         final Order order = ds.createQuery(Order.class)
-                              .filter("_id", claimed.getId()).get();
+                              .filter("id", new ObjectId(node.get("id").textValue())).get();
 
         if (order != null) {
-            if (order.getUpForGrabs() && order.getClaimedBy() != null) {
-//                order.setClaimedBy(claimed.ge);
+            if (order.getUpForGrabs() && order.getClaimedBy() == null) {
+                order.setClaimedBy(node.get("email").textValue());
+                order.setClaimedDate(new Date());
                 notifyClaim(order.getClaimedBy(), order);
                 ds.save(order);
             } else {
@@ -198,6 +205,7 @@ public class DibsResource {
     private String findUpForGrabs(final Query<Order> query) throws JsonProcessingException {
         MorphiaIterator<Order, Order> iterator = query
                                                      .field("upForGrabs").equal(true)
+                                                     .field("claimedBy").doesNotExist()
                                                      .order("orderedBy").fetch();
         List<Order> orders = new ArrayList<>();
         try {
