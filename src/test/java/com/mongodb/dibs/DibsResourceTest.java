@@ -34,7 +34,7 @@ public class DibsResourceTest {
             datastore.ensureIndexes();
             collection = datastore.getCollection(Order.class);
             
-            DibsResource resource = new DibsResource(datastore);
+            DibsResource resource = new DibsResource(null, datastore);
             resources = ResourceTestRule.builder()
                                         .addResource(resource)
                                         .build();
@@ -80,10 +80,10 @@ public class DibsResourceTest {
             datastore.save();
             orders.add(order);
         }
-        WebResource resource = resources.client().resource("/claim/");
-        String response = resource.get(String.class);
+        WebResource resource = resources.client().resource("/claim");
+        String response = resource.post(String.class, orders.get(0).getId().toString());
     }
-    
+
     private Order createOrder(final int count, final String vendor, final boolean group) {
         Order order = new Order();
         order.setVendor(vendor);

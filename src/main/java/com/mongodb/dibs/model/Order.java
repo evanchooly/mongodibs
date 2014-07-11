@@ -20,6 +20,7 @@ public class Order {
     private String vendor;
     private Date expectedAt;
     private Date claimedDate;
+    private Date deliveredAt;
     private String claimedBy;
     private String orderedBy;
     private String contents;
@@ -67,6 +68,14 @@ public class Order {
 
     public void setClaimedDate(final Date claimedDate) {
         this.claimedDate = claimedDate;
+    }
+
+    public Date getDeliveredAt() {
+        return deliveredAt;
+    }
+
+    public void setDeliveredAt(final Date deliveredAt) {
+        this.deliveredAt = deliveredAt;
     }
 
     public String getClaimedBy() {

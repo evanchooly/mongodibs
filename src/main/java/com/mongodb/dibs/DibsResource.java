@@ -27,11 +27,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 @Path("/")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -40,10 +36,29 @@ public class DibsResource {
     private static final String OK_RESPONSE = "{\"ok\": 1}";
 
     private final Datastore ds;
+    private DibsConfiguration configuration;
+    private AmazonSimpleEmailServiceClient sesClient;
     private JacksonMapper mapper = new JacksonMapper();
 
-    public DibsResource(final Datastore ds) {
+    public DibsResource(final DibsConfiguration configuration, final Datastore ds) {
         this.ds = ds;
+
+        if (configuration != null) {
+            this.configuration = configuration;
+
+            if (configuration.getAwsCredentials().getAccessKey() != null &&
+                configuration.getAwsCredentials().getSecretKey() != null) {
+                final BasicAWSCredentials creds = new BasicAWSCredentials(
+                    configuration.getAwsCredentials().getAccessKey(),
+                    configuration.getAwsCredentials().getSecretKey());
+                final ClientConfiguration awsConf = new ClientConfiguration();
+                awsConf.setConnectionTimeout(30000);
+                awsConf.setMaxConnections(200);
+                awsConf.setMaxErrorRetry(2);
+                awsConf.setSocketTimeout(30000);
+                this.sesClient = new AmazonSimpleEmailServiceClient(creds, awsConf);
+            }
+        }
     }
 
     @GET
@@ -88,14 +103,13 @@ public class DibsResource {
                                      .field("expectedAt").lessThan(next);
         for (final Order o : query.fetch()) {
             if (o.getClaimedBy() != null) {
-                notify(o.getClaimedBy(), o);
-                continue;
+                notifyDelivery(o.getClaimedBy(), o);
+            } else if (o.getOrderedBy() != null) {
+                notifyDelivery(o.getOrderedBy(), o);
             }
 
-            if (o.getOrderedBy() != null) {
-                notify(o.getOrderedBy(), o);
-            }
-        }   
+            o.setDeliveredAt(new Date());
+        }
 
         return OK_RESPONSE;
     }
@@ -109,49 +123,57 @@ public class DibsResource {
 
         if (order != null) {
             if (order.getClaimedBy() != null) {
-                notify(order.getClaimedBy(), order);
+                notifyDelivery(order.getClaimedBy(), order);
             } else if (order.getOrderedBy() != null) {
-                notify(order.getOrderedBy(), order);
+                notifyDelivery(order.getOrderedBy(), order);
             }
+
+            order.setDeliveredAt(new Date());
+            ds.save(order);
         }
 
         return OK_RESPONSE;
     }
 
     @POST
-    @Path("/claim/{order}")
+    @Path("/claim")
     @Produces(MediaType.APPLICATION_JSON)
-    public String claim(@PathParam("order") final String orderId) {
+    public String claim(final String orderId) {
         final Order order = ds.createQuery(Order.class)
                               .filter("_id", new ObjectId(orderId)).get();
 
         if (order != null) {
             if (order.getClaimedBy() != null) {
-                notify(order.getClaimedBy(), order);
-            } else if (order.getOrderedBy() != null) {
-                notify(order.getOrderedBy(), order);
+                order.setClaimedBy("" /* FIXME */);
+                notifyClaim(order.getClaimedBy(), order);
+                ds.save(order);
+            } else {
+                // TODO throw exception for order being claimed
             }
         }
 
         return OK_RESPONSE;
     }
 
-    private void notify(final String email, final Order order) {
-        final BasicAWSCredentials creds = new BasicAWSCredentials(
-                                                                     "asdf", "asdasdf");
-        final ClientConfiguration awsConf = new ClientConfiguration();
-        awsConf.setConnectionTimeout(30000);
-        awsConf.setMaxConnections(200);
-        awsConf.setMaxErrorRetry(2);
-        awsConf.setSocketTimeout(30000);
-        final AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(creds, awsConf);
+    private void notifyDelivery(final String email, final Order order) {
+        notify(email, order.getVendor() + " delivered. (EOM)");
+    }
+
+    private void notifyClaim(final String email, final Order order) {
+        notify(email, "You have claimed the order for " + order.getOrderedBy() + ". (EOM)");
+    }
+
+    private void notify(final String email, final String subject) {
         final SendEmailRequest request = new SendEmailRequest();
         request.setDestination(new Destination(Collections.singletonList(email)));
         request.setSource("donotreply@10gen.com");
         final Message message = new Message();
-        message.withSubject(new Content().withData(order.getVendor() + " delivered. (EOM)"));
+        message.withSubject(new Content().withData(subject));
         request.setMessage(message);
-        client.sendEmail(request);
+
+        if (sesClient != null) {
+            sesClient.sendEmail(request);
+        }
     }
 
     private String findSingleOrders(final Query<Order> query) throws JsonProcessingException {

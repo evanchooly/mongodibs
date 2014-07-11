@@ -49,10 +49,11 @@ public class SeamlessConfirmationEmailListener implements SimpleMessageListener 
 
     public SeamlessConfirmationEmailListener() {
         session = Session.getInstance(properties);
+        final MongoClientURI mongoUri = new MongoClientURI(properties.getProperty("mongo.mongodibs"));
         MongoClient mongo = null;
 
         try {
-            mongo = new MongoClient(new MongoClientURI(properties.getProperty("mongo.mongodibs")));
+            mongo = new MongoClient(mongoUri);
         } catch (final UnknownHostException uhe) {
             System.err.println("Could not resolve host specified in mongo.mongodibs property");
             System.exit(-1);
@@ -61,7 +62,7 @@ public class SeamlessConfirmationEmailListener implements SimpleMessageListener 
         final Morphia morphia = new Morphia();
         morphia.map(SeamlessConfirmation.class);
         morphia.map(Order.class);
-        ds = morphia.createDatastore(mongo, "mongodibs");
+        ds = morphia.createDatastore(mongo, mongoUri.getDatabase());
         ds.ensureIndexes();
     }
 

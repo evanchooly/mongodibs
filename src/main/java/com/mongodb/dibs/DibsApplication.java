@@ -2,6 +2,7 @@ package com.mongodb.dibs;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mongodb.dibs.model.Order;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
@@ -29,15 +30,16 @@ public class DibsApplication extends Application<DibsConfiguration> {
         morphia = new Morphia();
         morphia.mapPackage(Order.class.getPackage().getName());
 
-        mongo = new MongoClient();
+        final MongoClientURI mongoUri = new MongoClientURI(configuration.getMongo());
+        mongo = new MongoClient(mongoUri);
         environment.getApplicationContext().setSessionsEnabled(true);
         environment.getApplicationContext().setSessionHandler(new SessionHandler());
         environment.healthChecks().register("dibs", new DibsHealthCheck());
 
-        Datastore datastore = morphia.createDatastore(mongo, "mongo-dibs");
+        Datastore datastore = morphia.createDatastore(mongo, mongoUri.getDatabase());
         datastore.ensureIndexes();
 
-        environment.jersey().register(new DibsResource(datastore));
+        environment.jersey().register(new DibsResource(configuration, datastore));
 
         String testdata = System.getProperty("testdata");
         if (testdata != null) {
