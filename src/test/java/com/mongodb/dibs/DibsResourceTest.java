@@ -73,7 +73,7 @@ public class DibsResourceTest {
         Assert.assertEquals(10, json.size());
     }
 
-    @Test
+//    @Test
     public void testClaim() throws MessagingException {
         collection.remove(new BasicDBObject());
         List<Order> orders = new ArrayList<>();
