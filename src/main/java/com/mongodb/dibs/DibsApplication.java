@@ -59,6 +59,7 @@ public class DibsApplication extends Application<DibsConfiguration> {
         order.setGroup(group);
         order.setExpectedAt(DateTime.now().withTime(11, 45, 0, 0).toDate());
         order.setContents("yum " + count);
+        order.setOrderedBy("Employee " + count);
         ds.save(order);
     }
 
