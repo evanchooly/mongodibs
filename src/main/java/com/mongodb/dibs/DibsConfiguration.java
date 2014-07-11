@@ -7,6 +7,8 @@ public class DibsConfiguration extends Configuration {
     private AWSCredentials awsCredentials;
     private String mongo;
 
+    public DibsConfiguration() {}
+
     public void setAwsCredentials(final AWSCredentials awsCredentials) {
         this.awsCredentials = awsCredentials;
     }

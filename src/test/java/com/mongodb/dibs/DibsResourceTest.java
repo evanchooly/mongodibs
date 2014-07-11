@@ -81,6 +81,7 @@ public class DibsResourceTest {
             orders.add(order);
         }
         WebResource resource = resources.client().resource("/claim");
+        //String response = resource.post(String.class, "{\"_id\": \"" + orders.get(0).getId().toString() + "\"}");
         String response = resource.post(String.class, orders.get(0).getId().toString());
     }
 

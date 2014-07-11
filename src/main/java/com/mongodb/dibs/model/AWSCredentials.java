@@ -4,6 +4,8 @@ public class AWSCredentials {
     private String accessKey;
     private String secretKey;
 
+    public AWSCredentials() {}
+
     public AWSCredentials(final String accessKey, final String secretKey) {
         this.accessKey = accessKey;
         this.secretKey = secretKey;

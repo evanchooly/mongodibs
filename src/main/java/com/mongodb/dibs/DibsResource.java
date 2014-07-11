@@ -138,17 +138,18 @@ public class DibsResource {
     @POST
     @Path("/claim")
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.TEXT_PLAIN)
     public String claim(final String orderId) {
         final Order order = ds.createQuery(Order.class)
                               .filter("_id", new ObjectId(orderId)).get();
 
         if (order != null) {
-            if (order.getClaimedBy() != null) {
+            if (order.getUpForGrabs() && order.getClaimedBy() != null) {
                 order.setClaimedBy("" /* FIXME */);
                 notifyClaim(order.getClaimedBy(), order);
                 ds.save(order);
             } else {
-                // TODO throw exception for order being claimed
+                // TODO throw exception for order being claimed or not being up for grabs
             }
         }
 
