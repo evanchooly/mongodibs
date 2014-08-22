@@ -5,6 +5,7 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Index;
 import org.mongodb.morphia.annotations.Indexes;
+import org.mongodb.morphia.annotations.Property;
 import org.mongodb.morphia.annotations.Version;
 
 import java.util.Date;
@@ -21,7 +22,9 @@ public class Order {
     private Date expectedAt;
     private Date claimedDate;
     private Date deliveredAt;
+    @Property("claimant")
     private String claimedBy;
+    @Property("owner")
     private String orderedBy;
     private String contents;
     private Boolean group;
@@ -129,7 +132,6 @@ public class Order {
         sb.append(", orderedBy='").append(orderedBy).append('\'');
         sb.append(", contents='").append(contents).append('\'');
         sb.append(", group=").append(group);
-        sb.append(", upForGrabs=").append(upForGrabs);
         sb.append('}');
         return sb.toString();
     }

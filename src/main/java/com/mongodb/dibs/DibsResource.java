@@ -18,6 +18,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.query.MorphiaIterator;
 import org.mongodb.morphia.query.Query;
+import org.mongodb.morphia.query.UpdateOperations;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -31,7 +32,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -55,8 +58,8 @@ public class DibsResource {
             if (configuration.getAwsCredentials().getAccessKey() != null &&
                 configuration.getAwsCredentials().getSecretKey() != null) {
                 final BasicAWSCredentials creds = new BasicAWSCredentials(
-                    configuration.getAwsCredentials().getAccessKey(),
-                    configuration.getAwsCredentials().getSecretKey());
+                                                                             configuration.getAwsCredentials().getAccessKey(),
+                                                                             configuration.getAwsCredentials().getSecretKey());
                 final ClientConfiguration awsConf = new ClientConfiguration();
                 awsConf.setConnectionTimeout(30000);
                 awsConf.setMaxConnections(200);
@@ -145,31 +148,49 @@ public class DibsResource {
     @POST
     @Path("/claim")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)    
-    public String claim(final JsonNode node) {
-        final Order order = ds.createQuery(Order.class)
-                              .filter("id", new ObjectId(node.get("id").textValue())).get();
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String claim(final JsonNode node) throws JsonProcessingException {
+        String orderId = node.get("orderId").textValue();
+        String claimant = node.get("email").textValue();
+        Query<Order> filter = ds.createQuery(Order.class)
+                                .filter("id", new ObjectId(orderId));
+        filter.or(
+                     filter.criteria("upForGrabs").equal(Boolean.TRUE),
+                     filter.criteria("claimedBy").doesNotExist(),
+                     filter.criteria("claimedBy").equal(claimant)
+                 );
+
+        UpdateOperations<Order> updates = ds.createUpdateOperations(Order.class);
+        updates.set("upForGrabs", Boolean.FALSE);
+        updates.set("claimedBy", claimant);
+        updates.set("claimedDate", new Date());
+
+        Order order = ds.findAndModify(filter, updates);
+
+        Map<String, Object> response = new LinkedHashMap<>();
 
         if (order != null) {
-            if (order.getUpForGrabs() && order.getClaimedBy() == null) {
-                order.setClaimedBy(node.get("email").textValue());
-                order.setClaimedDate(new Date());
-                notifyClaim(order.getClaimedBy(), order);
-                ds.save(order);
-            } else {
-                // TODO throw exception for order being claimed or not being up for grabs
-            }
+            notifyClaim(order);
+            response.put("ok", 1);
+            //                response.put("message", "You have successfully claimed this order.");
+        } else {
+            response.put("ok", 0);
+            order = ds.createQuery(Order.class)
+                      .filter("id", new ObjectId(orderId))
+                      .get();
+            response.put("claimedBy", Dibs.claimedBy(order.getClaimedBy()));
         }
 
-        return OK_RESPONSE;
+        return mapper.writeValueAsString(response);
     }
 
     private void notifyDelivery(final String email, final Order order) {
-        notify(email, order.getVendor() + " delivered. (EOM)");
+        notify(email, Dibs.orderDelivered(order.getVendor()));
     }
 
-    private void notifyClaim(final String email, final Order order) {
-        notify(email, "You have claimed the order for " + order.getOrderedBy() + ". (EOM)");
+    private void notifyClaim(final Order order) {
+        notify(order.getClaimedBy(), Dibs.claimSuccessful(order.getOrderedBy()));
+        notify(order.getOrderedBy(), Dibs.orderClaimed(order.getClaimedBy()));
     }
 
     private void notify(final String email, final String subject) {

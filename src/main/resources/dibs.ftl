@@ -10,7 +10,8 @@
     <script src="webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.js"></script>
     <script src="assets/js/controllers.js"></script>
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/2.2.1/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/dibs.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/dibs.less">
+    <script src="webjars/less/1.3.1/less.min.js"></script>
 </head>
 
     <body ng-controller="GrabsListCtrl">

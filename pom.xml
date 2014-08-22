@@ -95,6 +95,37 @@
                     </arguments>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.antwerkz.sofia</groupId>
+                <artifactId>sofia-maven</artifactId>
+                <version>0.14</version>
+                <executions>
+                    <execution>
+                        <id>main</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <packageName>com.mongodb.dibs</packageName>
+                            <inputFile>src/main/resources/dibs.properties</inputFile>
+                            <outputDirectory>src/main/java</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <packageName>com.mongodb.dibs.test</packageName>
+                            <inputFile>src/test/resources/sofia.properties</inputFile>
+                            <outputDirectory>src/test/java</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -137,6 +168,11 @@
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-views-freemarker</artifactId>
             <version>${dropwizard.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.antwerkz.sofia</groupId>
+            <artifactId>sofia-core</artifactId>
+            <version>0.14</version>
         </dependency>
 
         <!-- webjars -->
