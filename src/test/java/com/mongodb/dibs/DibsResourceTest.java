@@ -37,16 +37,16 @@ public class DibsResourceTest {
 
     private final JacksonMapper mapper = new JacksonMapper();
 
-    static {
+    static { 
         try {
             datastore = new Morphia().createDatastore(new MongoClient(), "mongo-dibs");
             datastore.ensureIndexes();
             collection = datastore.getCollection(Order.class);
 
             DibsResource resource = new DibsResource(null, datastore);
-            resources = ResourceTestRule.builder()
-                                        .addResource(resource)
-                                        .build();
+        resources = ResourceTestRule.builder()
+                                    .addResource(resource)
+                                    .build();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -94,7 +94,7 @@ public class DibsResourceTest {
     @Test
     public void testDoubleClaim() throws MessagingException, IOException {
         WebResource resource = resources.client().resource("/claim/");
-        
+
         List<Order> orders = generateData();
         Map<String, String> formParams = new HashMap<>();
         formParams.put("orderId", orders.get(0).getId().toString());
@@ -115,6 +115,7 @@ public class DibsResourceTest {
                                      .type(MediaType.APPLICATION_JSON)
                                      .post(String.class, mapper.writeValueAsString(formParams)), LinkedHashMap.class);
         Assert.assertEquals(format("Should get find ok:0\n%s", value), 0, value.get("ok"));
+        Assert.assertEquals(Dibs.claimedBy(Sofia.testEmail1()), value.get("claimedBy"));
     }
 
     private List<Order> generateData() {
