@@ -41,6 +41,14 @@ public class Smtp {
         return getMessageValue("admin.email.address", locale);
     }
 
+    public static String imapHost(Locale... locale) {
+        return getMessageValue("imap.host", locale);
+    }
+
+    public static String imapPort(Locale... locale) {
+        return getMessageValue("imap.port", locale);
+    }
+
     public static String notificationsEmailAddress(Locale... locale) {
         return getMessageValue("notifications.email.address", locale);
     }
@@ -59,6 +67,10 @@ public class Smtp {
 
     public static String upForGrabsEmailAddress(Locale... locale) {
         return getMessageValue("up.for.grabs.email.address", locale);
+    }
+
+    public static String upForGrabsEmailPassword(Locale... locale) {
+        return getMessageValue("up.for.grabs.email.password", locale);
     }
 
 

@@ -4,7 +4,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.dibs.model.Order;
-import com.mongodb.dibs.service.SeamlessConfirmationEmailListener;
+import com.mongodb.dibs.email.SeamlessConfirmationEmailListener;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
@@ -41,9 +41,9 @@ public class DibsApplication extends Application<DibsConfiguration> {
         environment.jersey().register(new DibsResource(configuration, datastore));
 
         SeamlessConfirmationEmailListener emailListener = new SeamlessConfirmationEmailListener(datastore);
+        emailListener.start();
 
         generateTestData(datastore);
-
     }
 
     private void generateTestData(final Datastore datastore) {

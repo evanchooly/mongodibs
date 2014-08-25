@@ -1,5 +1,6 @@
 package com.mongodb.dibs.service;
 
+import com.mongodb.dibs.email.SeamlessConfirmationEmailListener;
 import com.mongodb.dibs.model.SeamlessConfirmation;
 import io.dropwizard.configuration.ConfigurationException;
 import org.junit.After;

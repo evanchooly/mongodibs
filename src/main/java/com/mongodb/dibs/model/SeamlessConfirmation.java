@@ -1,11 +1,13 @@
 package com.mongodb.dibs.model;
 
 import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.*;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Index;
+import org.mongodb.morphia.annotations.Indexes;
+import org.mongodb.morphia.annotations.Property;
 
-import javax.mail.Address;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 @Entity(value="seamless.confirmations", noClassnameStored=true)
@@ -26,16 +28,12 @@ public class SeamlessConfirmation {
     private final Date expectedAt;
 
     @Property("headers")
-    private final List<Map<String, String>> headers;  // list of {name: "From", value: "stephen.lee@10gen.com"}
+    private final Map<String, String> headers;  // list of {name: "From", value: "stephen.lee@10gen.com"}
 
     @Property("body")
     private final String body;
 
-    public SeamlessConfirmation(
-        final String email,
-        final String vendor,
-        final Date expectedAt,
-        final List<Map<String, String>> headers,
+    public SeamlessConfirmation(final String email, final String vendor, final Date expectedAt, final Map<String, String> headers,
         final String body) {
         this.email = email;
         this.vendor = vendor;
@@ -60,7 +58,7 @@ public class SeamlessConfirmation {
         return expectedAt;
     }
 
-    public List<Map<String, String>> getHeaders() {
+    public Map<String, String> getHeaders() {
         return headers;
     }
 
