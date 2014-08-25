@@ -88,7 +88,7 @@ public class DibsResourceTest {
         LinkedHashMap map = mapper.readValue(resource
                                                  .type(MediaType.APPLICATION_JSON)
                                                  .post(String.class, mapper.writeValueAsString(formParams)), LinkedHashMap.class);
-        Assert.assertEquals("Should get find ok:1", 1, map.get("ok"));
+        Assert.assertEquals(format("Should get find ok:1\n%s", map), 1, map.get("ok"));
     }
 
     @Test
@@ -103,12 +103,12 @@ public class DibsResourceTest {
         Map value = mapper.readValue(resource
                                          .type(MediaType.APPLICATION_JSON)
                                          .post(String.class, mapper.writeValueAsString(formParams)), LinkedHashMap.class);
-        Assert.assertEquals("Should get find ok:1", 1, value.get("ok"));
+        Assert.assertEquals(format("Should get find ok:1\n%s", value), 1, value.get("ok"));
 
         value = mapper.readValue(resource
                                      .type(MediaType.APPLICATION_JSON)
                                      .post(String.class, mapper.writeValueAsString(formParams)), LinkedHashMap.class);
-        Assert.assertEquals("Should get find ok:1", 1, value.get("ok"));
+        Assert.assertEquals(format("Should get find ok:1\n%s", value), 1, value.get("ok"));
 
         formParams.put("email", Sofia.testEmail2());
         value = mapper.readValue(resource
@@ -136,7 +136,7 @@ public class DibsResourceTest {
         order.setGroup(group);
         order.setExpectedAt(new DateTime(2014, 7, 10, 11, 45).toDate());
         order.setContents("yum " + count);
-        order.setOrderedBy(Sofia.orderedBy());
+        order.setOrderedBy(Sofia.orderedByEmail());
         datastore.save(order);
         return order;
     }

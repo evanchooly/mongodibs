@@ -113,6 +113,18 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>main-smtp</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <packageName>com.mongodb.dibs</packageName>
+                            <inputFile>src/main/resources/smtp.properties</inputFile>
+                            <outputDirectory>src/main/java</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>test</id>
                         <phase>generate-test-sources</phase>
                         <goals>

@@ -1,17 +1,14 @@
 package com.mongodb.dibs;
 
-import com.amazonaws.ClientConfiguration;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClient;
-import com.amazonaws.services.simpleemail.model.Content;
-import com.amazonaws.services.simpleemail.model.Destination;
-import com.amazonaws.services.simpleemail.model.Message;
-import com.amazonaws.services.simpleemail.model.SendEmailRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.base.Charsets;
 import com.mongodb.dibs.model.Order;
 import io.dropwizard.views.View;
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -28,9 +25,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -46,28 +44,11 @@ public class DibsResource {
 
     private final Datastore ds;
     private DibsConfiguration configuration;
-    private AmazonSimpleEmailServiceClient sesClient;
     private JacksonMapper mapper = new JacksonMapper();
 
     public DibsResource(final DibsConfiguration configuration, final Datastore ds) {
         this.ds = ds;
-
-        if (configuration != null) {
-            this.configuration = configuration;
-
-            if (configuration.getAwsCredentials().getAccessKey() != null &&
-                configuration.getAwsCredentials().getSecretKey() != null) {
-                final BasicAWSCredentials creds = new BasicAWSCredentials(
-                                                                             configuration.getAwsCredentials().getAccessKey(),
-                                                                             configuration.getAwsCredentials().getSecretKey());
-                final ClientConfiguration awsConf = new ClientConfiguration();
-                awsConf.setConnectionTimeout(30000);
-                awsConf.setMaxConnections(200);
-                awsConf.setMaxErrorRetry(2);
-                awsConf.setSocketTimeout(30000);
-                this.sesClient = new AmazonSimpleEmailServiceClient(creds, awsConf);
-            }
-        }
+        this.configuration = configuration;
     }
 
     @GET
@@ -111,14 +92,18 @@ public class DibsResource {
                                      .filter("vendor", vendor)
                                      .field("expectedAt").greaterThanOrEq(dateTime.toDate())
                                      .field("expectedAt").lessThan(next.toDate());
-        for (final Order o : query.fetch()) {
-            if (o.getClaimedBy() != null) {
-                notifyDelivery(o.getClaimedBy(), o);
-            } else if (o.getOrderedBy() != null) {
-                notifyDelivery(o.getOrderedBy(), o);
-            }
+        try {
+            for (final Order o : query.fetch()) {
+                if (o.getClaimedBy() != null) {
+                    notifyDelivery(o.getClaimedBy(), o);
+                } else if (o.getOrderedBy() != null) {
+                    notifyDelivery(o.getOrderedBy(), o);
+                }
 
-            o.setDeliveredAt(new Date());
+                o.setDeliveredAt(new Date());
+            }
+        } catch (EmailException e) {
+            notifyAdmin(e);
         }
 
         return OK_RESPONSE;
@@ -127,7 +112,7 @@ public class DibsResource {
     @POST
     @Path("/notify/order")
     @Produces(MediaType.APPLICATION_JSON)
-    public String notifyOrder(final String orderId) throws ParseException {
+    public String notifyOrder(final String orderId) throws ParseException, EmailException {
         final Order order = ds.createQuery(Order.class)
                               .filter("_id", new ObjectId(orderId)).get();
 
@@ -170,9 +155,15 @@ public class DibsResource {
         Map<String, Object> response = new LinkedHashMap<>();
 
         if (order != null) {
-            notifyClaim(order);
-            response.put("ok", 1);
-            //                response.put("message", "You have successfully claimed this order.");
+            try {
+                notifyClaim(order);
+                response.put("ok", 1);
+                //                response.put("message", "You have successfully claimed this order.");
+            } catch (EmailException e) {
+                response.put("ok", 0);
+                response.put("error", Dibs.error());
+                e.printStackTrace();
+            }
         } else {
             response.put("ok", 0);
             order = ds.createQuery(Order.class)
@@ -184,18 +175,51 @@ public class DibsResource {
         return mapper.writeValueAsString(response);
     }
 
-    private void notifyDelivery(final String email, final Order order) {
+    private void notifyDelivery(final String email, final Order order) throws EmailException {
         notify(email, Dibs.orderDelivered(order.getVendor()));
     }
 
-    private void notifyClaim(final Order order) {
+    private void notifyClaim(final Order order) throws EmailException {
         notify(order.getClaimedBy(), Dibs.claimSuccessful(order.getOrderedBy()));
         notify(order.getOrderedBy(), Dibs.orderClaimed(order.getClaimedBy()));
     }
 
-    private void notify(final String email, final String subject) {
+    private void notifyAdmin(final EmailException e) {
+        try {
+            Email email = new SimpleEmail();
+            email.setHostName(Smtp.smtpHost());
+            email.setSmtpPort(Integer.parseInt(Smtp.smtpPort()));
+            email.setAuthenticator(new DefaultAuthenticator(Smtp.notificationsEmailAddress(), Smtp.notificationsEmailPassword()));
+            email.setSSLOnConnect(true);
+            email.setFrom(Smtp.adminEmailAddress());
+            email.addTo(Smtp.adminEmailAddress());
+            email.setSubject("MongoDiBs failure");
+
+            StringWriter out = new StringWriter();
+            e.printStackTrace(new PrintWriter(out));
+            
+            email.setMsg(out.toString());
+            email.send();
+        } catch (EmailException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    private void notify(final String emailAddress, final String subject) throws EmailException {
+        Email email = new SimpleEmail();
+        email.setHostName(Smtp.smtpHost());
+        email.setSmtpPort(Integer.parseInt(Smtp.smtpPort()));
+        email.setAuthenticator(new DefaultAuthenticator(Smtp.notificationsEmailAddress(), Smtp.notificationsEmailPassword()));
+        email.setSSLOnConnect(true);
+        email.setFrom(Smtp.notificationsEmailAddress(), "MongoDiBs");
+        email.addTo(emailAddress);
+        email.setSubject(subject);
+        email.send();
+
+
+/*
         final SendEmailRequest request = new SendEmailRequest();
-        request.setDestination(new Destination(Collections.singletonList(email)));
+        request.setDestination(new Destination(Collections.singletonList(emailAddress)));
         request.setSource("donotreply@10gen.com");
         final Message message = new Message();
         message.withSubject(new Content().withData(subject));
@@ -204,6 +228,7 @@ public class DibsResource {
         if (sesClient != null) {
             sesClient.sendEmail(request);
         }
+*/
     }
 
     private String findSingleOrders(final Query<Order> query) throws JsonProcessingException {

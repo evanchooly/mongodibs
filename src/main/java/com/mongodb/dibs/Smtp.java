@@ -9,11 +9,11 @@ import java.util.ResourceBundle.Control;
 
 import java.util.logging.*;
 
-public class Dibs {
+public class Smtp {
     private static Map<Locale, ResourceBundle> messages = new HashMap<>();
-        private static Logger logger = Logger.getLogger(Dibs.class.getName());
+        private static Logger logger = Logger.getLogger(Smtp.class.getName());
 
-    private Dibs() {}
+    private Smtp() {}
 
     private static ResourceBundle getBundle(Locale... localeList) {
         Locale locale = localeList.length == 0 ? Locale.getDefault() : localeList[0];
@@ -27,7 +27,7 @@ public class Dibs {
     private static ResourceBundle loadBundle(Locale locale) {
         ResourceBundle bundle = messages.get(locale);
         if(bundle == null) {
-            bundle = ResourceBundle.getBundle("dibs", locale );
+            bundle = ResourceBundle.getBundle("smtp", locale );
             messages.put(locale, bundle);
         }
         return bundle;
@@ -37,24 +37,28 @@ public class Dibs {
         return (String) getBundle(locale).getObject(key);
     }
 
-    public static String claimSuccessful(Object arg0, Locale... locale) {
-        return MessageFormat.format(getMessageValue("claim.successful", locale), arg0);
+    public static String adminEmailAddress(Locale... locale) {
+        return getMessageValue("admin.email.address", locale);
     }
 
-    public static String claimedBy(Object arg0, Locale... locale) {
-        return MessageFormat.format(getMessageValue("claimed.by", locale), arg0);
+    public static String notificationsEmailAddress(Locale... locale) {
+        return getMessageValue("notifications.email.address", locale);
     }
 
-    public static String error(Locale... locale) {
-        return getMessageValue("error", locale);
+    public static String notificationsEmailPassword(Locale... locale) {
+        return getMessageValue("notifications.email.password", locale);
     }
 
-    public static String orderClaimed(Object arg0, Locale... locale) {
-        return MessageFormat.format(getMessageValue("order.claimed", locale), arg0);
+    public static String smtpHost(Locale... locale) {
+        return getMessageValue("smtp.host", locale);
     }
 
-    public static String orderDelivered(Object arg0, Locale... locale) {
-        return MessageFormat.format(getMessageValue("order.delivered", locale), arg0);
+    public static String smtpPort(Locale... locale) {
+        return getMessageValue("smtp.port", locale);
+    }
+
+    public static String upForGrabsEmailAddress(Locale... locale) {
+        return getMessageValue("up.for.grabs.email.address", locale);
     }
 
 

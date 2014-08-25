@@ -1,27 +1,14 @@
 package com.mongodb.dibs;
 
-import com.mongodb.dibs.model.AWSCredentials;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
 
 public class DibsConfiguration extends Configuration {
-    private AWSCredentials awsCredentials = new AWSCredentials();
-    private String mongo = "mongodb://localhost:27017/dibs";
+    @JsonProperty("mongo.uri")
+    private String mongoUri;
 
-    public DibsConfiguration() {}
 
-    public void setAwsCredentials(final AWSCredentials awsCredentials) {
-        this.awsCredentials = awsCredentials;
-    }
-
-    public AWSCredentials getAwsCredentials() {
-        return awsCredentials;
-    }
-
-    public void setMongo(final String mongo) {
-        this.mongo = mongo;
-    }
-
-    public String getMongo() {
-        return mongo;
+    public String getMongoUri() {
+        return mongoUri;
     }
 }

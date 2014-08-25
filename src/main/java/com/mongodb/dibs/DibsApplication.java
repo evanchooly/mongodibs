@@ -4,6 +4,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.dibs.model.Order;
+import com.mongodb.dibs.service.SeamlessConfirmationEmailListener;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
@@ -14,11 +15,7 @@ import org.joda.time.DateTime;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
-import java.util.Random;
-
 public class DibsApplication extends Application<DibsConfiguration> {
-    private MongoClient mongo;
-    private Morphia morphia;
 
     @Override
     public void initialize(final Bootstrap<DibsConfiguration> bootstrap) {
@@ -29,33 +26,39 @@ public class DibsApplication extends Application<DibsConfiguration> {
 
     @Override
     public void run(final DibsConfiguration configuration, final Environment environment) throws Exception {
-        morphia = new Morphia();
+        final Morphia morphia = new Morphia();
         morphia.mapPackage(Order.class.getPackage().getName());
 
-        final MongoClientURI mongoUri = new MongoClientURI(configuration.getMongo());
-        mongo = new MongoClient(mongoUri);
+        final MongoClientURI mongoUri = new MongoClientURI(configuration.getMongoUri());
+        final MongoClient client = new MongoClient(mongoUri);
+        Datastore datastore = morphia.createDatastore(client, mongoUri.getDatabase());
+        datastore.ensureIndexes();
+
         environment.getApplicationContext().setSessionsEnabled(true);
         environment.getApplicationContext().setSessionHandler(new SessionHandler());
         environment.healthChecks().register("dibs", new DibsHealthCheck());
 
-        Datastore datastore = morphia.createDatastore(mongo, mongoUri.getDatabase());
-        datastore.ensureIndexes();
-
         environment.jersey().register(new DibsResource(configuration, datastore));
 
+        SeamlessConfirmationEmailListener emailListener = new SeamlessConfirmationEmailListener(datastore);
+
+        generateTestData(datastore);
+
+    }
+
+    private void generateTestData(final Datastore datastore) {
         String testdata = System.getProperty("testdata");
         if (testdata != null) {
             System.out.println("***  Generating test data ***");
             datastore.getCollection(Order.class).remove(new BasicDBObject());
-            Random random = new Random();
-            String[] vendors = { "Chopt", "Schnippers", "Food Bucket", "Kosher Deluxe", "Baja Fresh (Broadway)"};
+            String[] vendors = {"Chopt", "Schnippers", "Food Bucket", "Kosher Deluxe", "Baja Fresh (Broadway)"};
             for (int i = 0; i < 100; i++) {
                 String vendor = vendors[i % 5];
                 createTestOrder(datastore, i, vendor, true);
             }
             for (int i = 0; i < 10; i++) {
                 String vendor = vendors[i % 5];
-                
+
                 createTestOrder(datastore, i, vendor, false);
             }
             for (int i = 0; i < 10; i++) {
@@ -64,7 +67,6 @@ public class DibsApplication extends Application<DibsConfiguration> {
                 datastore.save(order);
             }
         }
-
     }
 
     private Order createTestOrder(final Datastore ds, final int count, final String vendor, final boolean group) {

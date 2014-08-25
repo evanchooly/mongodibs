@@ -37,8 +37,8 @@ public class Sofia {
         return (String) getBundle(locale).getObject(key);
     }
 
-    public static String orderedBy(Locale... locale) {
-        return getMessageValue("orderedBy", locale);
+    public static String orderedByEmail(Locale... locale) {
+        return getMessageValue("ordered.by.email", locale);
     }
 
     public static String testEmail1(Locale... locale) {
