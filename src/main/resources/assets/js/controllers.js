@@ -27,8 +27,8 @@ dibsApp.controller('OrdersListCtrl', function ($scope, $http) {
   $scope.notifyGroup = function(vendor) {
     url = "/notify/" + dateString() + "/vendor";
     $http.post(url, vendor).success(function(data) {
-      $http.get(singleOrderUrl).success(function(data) {
-        $scope.singleOrders = data;
+      $http.get(groupOrderUrl).success(function(data) {
+        $scope.groupOrders = data;
       });
     });
   };

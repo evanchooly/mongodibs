@@ -3,7 +3,6 @@ package com.mongodb.dibs.email;
 import com.mongodb.dibs.model.Order;
 import com.mongodb.dibs.model.SeamlessConfirmation;
 import com.sun.mail.imap.IMAPMessage;
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.mail.util.MimeMessageParser;
 import org.apache.commons.mail.util.MimeMessageUtils;
 import org.mongodb.morphia.Datastore;
@@ -31,9 +30,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class SeamlessConfirmationEmailListener {
     public final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("h:m a M/d/yy");
@@ -42,28 +40,26 @@ public class SeamlessConfirmationEmailListener {
     private final Session session;
     private final Datastore ds;
     public static final String ESTIMATED_DELIVERY = "Estimated Delivery: ";
+    private ExecutorService executorService;
 
     public SeamlessConfirmationEmailListener(Datastore ds) {
         this.ds = ds;
         session = Session.getInstance(new Properties());
+        executorService = Executors.newFixedThreadPool(2);
     }
 
     public void start() throws MessagingException {
-        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
-        executorService.scheduleAtFixedRate(new NotificationsWatcher(this), 1, 10, TimeUnit.SECONDS);
-        //                executorService.scheduleAtFixedRate(new UpForGrabsWatcher(), 1, 10, TimeUnit.SECONDS);
+        executorService.submit(new NotificationsWatcher(this));
+//        executorService.submit(new UpForGrabsWatcher(this));
     }
 
-    public boolean accept(final String from, final String recipient) {
-        return !StringUtils.isBlank(recipient) && recipient.startsWith("seamless");
-    }
-
-    public void deliver(final Message message) throws MessagingException {
+    public void deliver(final Message message, final boolean upForGrabs) throws MessagingException {
         final SeamlessConfirmation seamlessConfirmation = parseMessage(message);
         ds.save(seamlessConfirmation);
 
         InternetAddress address = (InternetAddress) message.getFrom()[0];
         final Order order = emailParser.parse(address.getAddress(), seamlessConfirmation.getBody());
+        order.setUpForGrabs(upForGrabs);
 
         if (!validate(seamlessConfirmation, order)) {
             throw new NotificationException("Email could not be parsed");

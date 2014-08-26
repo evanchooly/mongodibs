@@ -10,6 +10,7 @@
     <script src="webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.js"></script>
     <script src="assets/js/controllers.js"></script>
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/2.2.1/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/2.2.1/css/bootstrap-responsive.css">
     <link rel="stylesheet/less" type="text/less" href="assets/css/dibs.less">
     <script src="webjars/less/1.3.1/less.min.js"></script>
 </head>
@@ -18,7 +19,7 @@
 
       <div class="dashboard">
 
-        <div>
+        <div id="content">
         
           <tabset>
             <tab heading="Group Orders">
@@ -27,7 +28,7 @@
               
               <ul class="orders">
                 <li ng-repeat="vendor in groupOrders | filter:query">
-                  <p>{{vendor}} <button id="{{vendor}}" class="btn btn-default btn-sm" ng-click="notifyGroup($event)">Notify!</button> </p>
+                  <p>{{vendor}} <button id="{{vendor}}" class="btn btn-default btn-sm" ng-click="notifyGroup(vendor)">Notify!</button> </p>
                 </li>
               </ul>
   

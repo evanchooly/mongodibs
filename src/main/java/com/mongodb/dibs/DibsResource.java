@@ -77,6 +77,7 @@ public class DibsResource {
         boolean upForGrabs = type.equalsIgnoreCase("upForGrabs");
         Query<Order> query = ds.createQuery(Order.class)
                                .filter("group", groupOrder)
+                               .field("deliveredAt").doesNotExist()
                                .field("expectedAt").greaterThanOrEq(dateTime.toDate())
                                .field("expectedAt").lessThan(next.toDate());
         return groupOrder ? findGroupOrders(query) : (upForGrabs ? findUpForGrabs(query) : findSingleOrders(query));
@@ -101,6 +102,7 @@ public class DibsResource {
                 }
 
                 o.setDeliveredAt(new Date());
+                ds.save(o);
             }
         } catch (EmailException e) {
             notifyAdmin(e);
@@ -197,7 +199,7 @@ public class DibsResource {
 
             StringWriter out = new StringWriter();
             e.printStackTrace(new PrintWriter(out));
-            
+
             email.setMsg(out.toString());
             email.send();
         } catch (EmailException e1) {
@@ -215,20 +217,6 @@ public class DibsResource {
         email.addTo(emailAddress);
         email.setSubject(subject);
         email.send();
-
-
-/*
-        final SendEmailRequest request = new SendEmailRequest();
-        request.setDestination(new Destination(Collections.singletonList(emailAddress)));
-        request.setSource("donotreply@10gen.com");
-        final Message message = new Message();
-        message.withSubject(new Content().withData(subject));
-        request.setMessage(message);
-
-        if (sesClient != null) {
-            sesClient.sendEmail(request);
-        }
-*/
     }
 
     private String findSingleOrders(final Query<Order> query) throws JsonProcessingException {

@@ -1,21 +1,23 @@
 package com.mongodb.dibs;
 
-import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-import com.mongodb.dibs.model.Order;
 import com.mongodb.dibs.email.SeamlessConfirmationEmailListener;
+import com.mongodb.dibs.model.Order;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
 import org.eclipse.jetty.server.session.SessionHandler;
-import org.joda.time.DateTime;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
 public class DibsApplication extends Application<DibsConfiguration> {
+
+    private MongoClientURI mongoUri;
+    private MongoClient mongoClient;
+    private Datastore datastore;
 
     @Override
     public void initialize(final Bootstrap<DibsConfiguration> bootstrap) {
@@ -29,9 +31,9 @@ public class DibsApplication extends Application<DibsConfiguration> {
         final Morphia morphia = new Morphia();
         morphia.mapPackage(Order.class.getPackage().getName());
 
-        final MongoClientURI mongoUri = new MongoClientURI(configuration.getMongoUri());
-        final MongoClient client = new MongoClient(mongoUri);
-        Datastore datastore = morphia.createDatastore(client, mongoUri.getDatabase());
+        mongoUri = new MongoClientURI(configuration.getMongoUri());
+        mongoClient = new MongoClient(mongoUri);
+        datastore = morphia.createDatastore(mongoClient, mongoUri.getDatabase());
         datastore.ensureIndexes();
 
         environment.getApplicationContext().setSessionsEnabled(true);
@@ -42,42 +44,18 @@ public class DibsApplication extends Application<DibsConfiguration> {
 
         SeamlessConfirmationEmailListener emailListener = new SeamlessConfirmationEmailListener(datastore);
         emailListener.start();
-
-        generateTestData(datastore);
     }
 
-    private void generateTestData(final Datastore datastore) {
-        String testdata = System.getProperty("testdata");
-        if (testdata != null) {
-            System.out.println("***  Generating test data ***");
-            datastore.getCollection(Order.class).remove(new BasicDBObject());
-            String[] vendors = {"Chopt", "Schnippers", "Food Bucket", "Kosher Deluxe", "Baja Fresh (Broadway)"};
-            for (int i = 0; i < 100; i++) {
-                String vendor = vendors[i % 5];
-                createTestOrder(datastore, i, vendor, true);
-            }
-            for (int i = 0; i < 10; i++) {
-                String vendor = vendors[i % 5];
-
-                createTestOrder(datastore, i, vendor, false);
-            }
-            for (int i = 0; i < 10; i++) {
-                Order order = createTestOrder(datastore, i, vendors[i % 5], false);
-                order.setUpForGrabs(true);
-                datastore.save(order);
-            }
-        }
+    public MongoClientURI getMongoUri() {
+        return mongoUri;
     }
 
-    private Order createTestOrder(final Datastore ds, final int count, final String vendor, final boolean group) {
-        Order order = new Order();
-        order.setVendor(vendor);
-        order.setGroup(group);
-        order.setExpectedAt(DateTime.now().withTime(11, 45, 0, 0).toDate());
-        order.setContents("yum " + count);
-        order.setOrderedBy("Employee " + count);
-        ds.save(order);
-        return order;
+    public MongoClient getMongoClient() {
+        return mongoClient;
+    }
+
+    public Datastore getDatastore() {
+        return datastore;
     }
 
     public static void main(String[] args) throws Exception {

@@ -16,8 +16,7 @@ class NotificationsWatcher extends EmailWatcher {
 
     @Override
     protected void process(final Message message) throws MessagingException {
-        emailListener.deliver(message);
+        emailListener.deliver(message, false);
         message.setFlag(Flag.DELETED, true);
-        throw new UnsupportedOperationException("Not implemented yet!");
     }
 }
