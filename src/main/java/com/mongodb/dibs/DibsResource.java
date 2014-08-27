@@ -76,10 +76,13 @@ public class DibsResource {
         boolean groupOrder = type.equalsIgnoreCase("group");
         boolean upForGrabs = type.equalsIgnoreCase("upForGrabs");
         Query<Order> query = ds.createQuery(Order.class)
-                               .filter("group", groupOrder)
+                               .filter("upForGrabs", upForGrabs)
                                .field("deliveredAt").doesNotExist()
                                .field("expectedAt").greaterThanOrEq(dateTime.toDate())
                                .field("expectedAt").lessThan(next.toDate());
+        if (!upForGrabs) {
+            query.filter("group", groupOrder);
+        }
         return groupOrder ? findGroupOrders(query) : (upForGrabs ? findUpForGrabs(query) : findSingleOrders(query));
     }
 
@@ -137,13 +140,13 @@ public class DibsResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String claim(final JsonNode node) throws JsonProcessingException {
-        String orderId = node.get("orderId").textValue();
+        String orderId = node.get("id").textValue();
         String claimant = node.get("email").textValue();
         Query<Order> filter = ds.createQuery(Order.class)
                                 .filter("id", new ObjectId(orderId));
         filter.or(
-                     filter.criteria("upForGrabs").equal(Boolean.TRUE),
-                     filter.criteria("claimedBy").doesNotExist(),
+                     filter.and(filter.criteria("upForGrabs").equal(Boolean.TRUE),
+                                filter.criteria("claimedBy").doesNotExist()),
                      filter.criteria("claimedBy").equal(claimant)
                  );
 
@@ -222,7 +225,6 @@ public class DibsResource {
     private String findSingleOrders(final Query<Order> query) throws JsonProcessingException {
         MorphiaIterator<Order, Order> iterator = query
                                                      .field("group").equal(false)
-                                                     .field("upForGrabs").equal(false)
                                                      .order("orderedBy")
                                                      .fetch();
         List<Order> orders = new ArrayList<>();
@@ -238,9 +240,9 @@ public class DibsResource {
 
     private String findUpForGrabs(final Query<Order> query) throws JsonProcessingException {
         MorphiaIterator<Order, Order> iterator = query
-                                                     .field("upForGrabs").equal(true)
                                                      .field("claimedBy").doesNotExist()
-                                                     .order("orderedBy").fetch();
+                                                     .order("orderedBy")
+                                                     .fetch();
         List<Order> orders = new ArrayList<>();
         try {
             for (Order order : iterator) {

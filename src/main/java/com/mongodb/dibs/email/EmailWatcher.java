@@ -1,12 +1,10 @@
 package com.mongodb.dibs.email;
 
 import com.mongodb.dibs.Smtp;
-import com.sun.mail.imap.IMAPFolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.mail.Folder;
-import javax.mail.FolderClosedException;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -24,6 +22,9 @@ abstract class EmailWatcher implements Runnable {
     private final long delay;
     private Properties props = new Properties();
     private boolean running = true;
+    private Folder inbox;
+    private Folder problems;
+    private Store store;
 
     EmailWatcher(final String email, final String password) throws MessagingException {
         this.email = email;
@@ -35,65 +36,80 @@ abstract class EmailWatcher implements Runnable {
 
     @Override
     public void run() {
-        Store store = null;
         try {
+            cleanUp();
+
             store = Session.getInstance(props, null).getStore("imaps");
             store.connect(Smtp.imapHost(), email, password);
-            final Folder inbox = store.getFolder("INBOX");
-            inbox.open(Folder.READ_WRITE);
-            final Folder problems = store.getFolder("Problem Emails");
-            problems.open(Folder.READ_WRITE);
-            inbox.addMessageCountListener(new MessageCountAdapter() {
-                @Override
-                public void messagesAdded(final MessageCountEvent event) {
-                    for (Message message : event.getMessages()) {
-                        try {
-                            process(message);
-                        } catch (MessagingException e) {
-                            try {
-                                inbox.copyMessages(new Message[]{message}, problems);
-                            } catch (MessagingException e1) {
-                                LOG.error(e.getMessage(), e);
-                            }
-                        }
-                    }
 
-                }
-            });
-            boolean supportsIdle;
-            try {
-                ((IMAPFolder) inbox).idle();
-                ((IMAPFolder) problems).idle();
-                supportsIdle = true;
-            } catch (FolderClosedException fex) {
-                throw fex;
-            } catch (MessagingException mex) {
-                supportsIdle = false;
-            }
-            while (running) {
-                if (supportsIdle) {
-                    ((IMAPFolder) inbox).idle();
-                    ((IMAPFolder) problems).idle();
-                } else {
-                    Thread.sleep(delay); 
-                    inbox.getMessageCount();
+            inbox = openFolder(store, "INBOX");
+            problems = openFolder(store, "Problem Emails");
+
+            for (Message message : inbox.getMessages()) {
+                System.out.println("message = " + message);
+                try {
+                    process(message);
+                } catch (Exception e) {
+                    try {
+                        LOG.error(e.getMessage(), e);
+                        inbox.copyMessages(new Message[]{message}, problems);
+                    } catch (MessagingException e1) {
+                        LOG.error(e.getMessage(), e);
+                    }
                 }
             }
-        } catch (MessagingException | InterruptedException e) {
+        } catch (MessagingException e) {
             LOG.error(e.getMessage(), e);
         } finally {
-            if (store != null) {
-                try {
-                    store.close();
-                } catch (MessagingException e) {
-                    LOG.error(e.getMessage(), e);
-                }
+            try {
+                cleanUp();
+            } catch (MessagingException e) {
+                LOG.error(e.getMessage(), e);
             }
         }
+    }
+
+    private void cleanUp() throws MessagingException {
+        if (inbox != null && inbox.isOpen()) {
+            inbox.close(false);
+        }
+        if (problems != null && problems.isOpen()) {
+            problems.close(false);
+        }
+        if (store != null && store.isConnected()) {
+            store.close();
+        }
+    }
+
+    private Folder openFolder(final Store store, final String name) throws MessagingException {
+        Folder folder = store.getFolder(name);
+        folder.open(Folder.READ_WRITE);
+        return folder;
     }
 
     public void stop() {
         running = false;
     }
+
     protected abstract void process(final Message message) throws MessagingException;
+
+    private class InboxListener extends MessageCountAdapter {
+        @Override
+        public void messagesAdded(final MessageCountEvent event) {
+            for (Message message : event.getMessages()) {
+                System.out.println("message = " + message);
+                try {
+                    process(message);
+                } catch (Exception e) {
+                    try {
+                        LOG.error(e.getMessage(), e);
+                        inbox.copyMessages(new Message[]{message}, problems);
+                    } catch (MessagingException e1) {
+                        LOG.error(e.getMessage(), e);
+                    }
+                }
+            }
+
+        }
+    }
 }

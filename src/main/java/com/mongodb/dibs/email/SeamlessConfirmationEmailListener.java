@@ -12,7 +12,6 @@ import javax.mail.Header;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
-import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeUtility;
 import java.io.BufferedReader;
@@ -30,8 +29,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class SeamlessConfirmationEmailListener {
     public final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("h:m a M/d/yy");
@@ -40,37 +40,27 @@ public class SeamlessConfirmationEmailListener {
     private final Session session;
     private final Datastore ds;
     public static final String ESTIMATED_DELIVERY = "Estimated Delivery: ";
-    private ExecutorService executorService;
+    private ScheduledExecutorService executorService;
 
     public SeamlessConfirmationEmailListener(Datastore ds) {
         this.ds = ds;
         session = Session.getInstance(new Properties());
-        executorService = Executors.newFixedThreadPool(2);
+        executorService = Executors.newScheduledThreadPool(2);
     }
 
     public void start() throws MessagingException {
-        executorService.submit(new NotificationsWatcher(this));
-//        executorService.submit(new UpForGrabsWatcher(this));
+        executorService.scheduleAtFixedRate(new NotificationsWatcher(this), 0, 1, TimeUnit.MINUTES);
+        executorService.scheduleAtFixedRate(new UpForGrabsWatcher(this), 0, 1, TimeUnit.MINUTES);
     }
 
     public void deliver(final Message message, final boolean upForGrabs) throws MessagingException {
         final SeamlessConfirmation seamlessConfirmation = parseMessage(message);
-        ds.save(seamlessConfirmation);
+//        ds.save(seamlessConfirmation);
 
-        InternetAddress address = (InternetAddress) message.getFrom()[0];
-        final Order order = emailParser.parse(address.getAddress(), seamlessConfirmation.getBody());
+        Order order = emailParser.parse(seamlessConfirmation);
         order.setUpForGrabs(upForGrabs);
 
-        if (!validate(seamlessConfirmation, order)) {
-            throw new NotificationException("Email could not be parsed");
-        }
-
         ds.save(order);
-    }
-
-    public boolean validate(final SeamlessConfirmation seamlessConfirmation, final Order order) {
-        return seamlessConfirmation.getVendor().equals(order.getVendor()) &&
-               seamlessConfirmation.getExpectedAt().equals(order.getExpectedAt());
     }
 
     public SeamlessConfirmation parseMessage(final Message message) throws MessagingException {
@@ -99,16 +89,17 @@ public class SeamlessConfirmationEmailListener {
 
     private String getHtmlContent(final MimeMessageParser parser) {
         List<String> plainContent = new ArrayList<>(Arrays.asList(parser.getPlainContent().split("\n")));
-        while(!plainContent.get(0).startsWith("<")) {
+        while (!plainContent.get(0).startsWith("<")) {
             plainContent.remove(0);
         }
         StringBuilder content = new StringBuilder();
         try {
-            InputStream stream = MimeUtility.decode(new ByteArrayInputStream(String.join("\n", plainContent).getBytes()), "quoted-printable");
+            InputStream stream = MimeUtility.decode(new ByteArrayInputStream(String.join("\n", plainContent).getBytes()),
+                                                    "quoted-printable");
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
-            while(bufferedReader.ready()) {
-                content.append(bufferedReader.readLine())      
-                    .append("\n");
+            while (bufferedReader.ready()) {
+                content.append(bufferedReader.readLine())
+                       .append("\n");
             }
             System.out.println("s = " + content);
             return content.toString();
@@ -125,12 +116,14 @@ public class SeamlessConfirmationEmailListener {
         }
         while (scanner.hasNextLine()) {
             line = scanner.nextLine();
-            if (!line.startsWith("Estimated Delivery")) {
-                builder.append("\n");
+            if (line.startsWith("Subject: ")) {
+                builder.append(line)
+                       .append(" ")
+                       .append(scanner.nextLine());
             } else {
-                builder.append(" ");
+                builder.append(line);
             }
-            builder.append(line);
+            builder.append("\n");
         }
         return builder.toString().trim();
     }

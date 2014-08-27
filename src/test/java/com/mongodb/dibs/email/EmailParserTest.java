@@ -15,17 +15,17 @@ public class EmailParserTest {
 
     @Test
     public void testIndividualParse() throws Exception {
-        Assert.assertFalse(emailParser.parse("test@example.com", readBody("seamless-email.html")).isGroup());
+        Assert.assertFalse(emailParser.parse("test@example.com").isGroup());
     }
 
     @Test
     public void testGroupParse() throws Exception {
-        Assert.assertTrue(emailParser.parse("test@example.com", readBody("seamless-group-email.html")).isGroup());
+        Assert.assertTrue(emailParser.parse("test@example.com").isGroup());
     }
 
     @Test
     public void testExpectedAtDateParse() throws Exception {
-        final Order order = emailParser.parse("test@example.com", readBody("seamless-group-email.html"));
+        final Order order = emailParser.parse("test@example.com");
         final Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, 2014);
         calendar.set(Calendar.MONDAY, Calendar.JULY);
