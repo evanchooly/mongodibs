@@ -19,7 +19,10 @@
         <div class="dashboard">
         
             <div id="content">
-        
+                <a href="/dibs">Dibs!</a>
+                <br/><a href="/notify">Delivery Notifications</a>
+                <br/>
+                
                 Find: <input ng-model="query">
         
                 <table class="orders" ng-repeat="order in grabOrders | filter:query">

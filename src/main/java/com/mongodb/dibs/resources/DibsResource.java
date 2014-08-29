@@ -171,7 +171,6 @@ public class DibsResource {
                  );
 
         UpdateOperations<Order> updates = ds.createUpdateOperations(Order.class);
-        updates.set("upForGrabs", Boolean.FALSE);
         updates.set("claimedBy", claimant);
         updates.set("claimedDate", new Date());
 
