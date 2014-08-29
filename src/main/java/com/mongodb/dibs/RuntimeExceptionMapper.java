@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
@@ -50,7 +51,12 @@ public class RuntimeExceptionMapper implements ExceptionMapper<RuntimeException>
                        .status(Response.Status.UNAUTHORIZED)
                        .entity(new PublicErrorResource().view401())
                        .build();
-        } else if (status == Response.Status.NOT_FOUND.getStatusCode()) {
+        } else if (status == Status.FORBIDDEN.getStatusCode()) {
+            return Response
+                       .status(Response.Status.FORBIDDEN)
+                       .entity(new PublicErrorResource().view403())
+                       .build();
+        } else if (status == Status.NOT_FOUND.getStatusCode()) {
             return Response
                        .status(Response.Status.NOT_FOUND)
                        .entity(new PublicErrorResource().view404())

@@ -1,18 +1,14 @@
 package com.mongodb.dibs;
 
-import com.google.common.base.Optional;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-import com.mongodb.dibs.auth.OpenIDAuthenticator;
-import com.mongodb.dibs.auth.OpenIDRestrictedToProvider;
-import com.mongodb.dibs.auth.User;
+import com.mongodb.dibs.auth.RestrictedProvider;
 import com.mongodb.dibs.email.SeamlessConfirmationEmailListener;
 import com.mongodb.dibs.model.Order;
 import com.mongodb.dibs.resources.DibsResource;
 import com.mongodb.dibs.resources.PublicOAuthResource;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
-import io.dropwizard.auth.AuthenticationException;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
@@ -50,9 +46,7 @@ public class DibsApplication extends Application<DibsConfiguration> {
         environment.jersey().register(new PublicOAuthResource(configuration));
         environment.jersey().register(new DibsResource(configuration, datastore));
         environment.jersey().register(new RuntimeExceptionMapper());
-
-        OpenIDAuthenticator authenticator = new OpenIDAuthenticator();
-        environment.jersey().register(new OpenIDRestrictedToProvider<User>(authenticator, "OpenID"));
+        environment.jersey().register(new RestrictedProvider());
 
         SeamlessConfirmationEmailListener emailListener = new SeamlessConfirmationEmailListener(datastore);
         emailListener.start();
@@ -72,13 +66,5 @@ public class DibsApplication extends Application<DibsConfiguration> {
 
     public static void main(String[] args) throws Exception {
         new DibsApplication().run(args);
-    }
-
-    private static class OathAuthenticator implements io.dropwizard.auth.Authenticator<String, User> {
-        @Override
-        public Optional<User> authenticate(final String credentials) throws AuthenticationException {
-            System.out.println("credentials = " + credentials);
-            throw new UnsupportedOperationException("Not implemented yet!");
-        }
     }
 }

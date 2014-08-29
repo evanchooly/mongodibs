@@ -45,19 +45,19 @@ public class PublicOAuthResource {
     @GET
     @Path("/login")
     public Response requestOAuth(@Context HttpServletRequest request) throws URISyntaxException {
-        // instantiate SocialAuth for this provider type and tuck into session
         List<OAuthConfig> oauthCfg = dibsConfiguration.getOAuthCfg();
         if (oauthCfg != null) {
-            // get the authentication URL for this provider
             try {
                 SocialAuthManager manager = getSocialAuthManager();
-                java.net.URI url = new URI(manager.getAuthenticationUrl("googleplus", dibsConfiguration.getOAuthSuccessUrl()));
 
                 request.getSession().setAttribute(AUTH_MANAGER, manager);
-                log.debug("OAuth Auth URL: {}", url);
-                return Response.temporaryRedirect(url).build();
+
+                final URI uri = new URI(manager.getAuthenticationUrl("googleplus", dibsConfiguration.getOAuthSuccessUrl()));
+                return Response
+                           .temporaryRedirect(uri)
+                           .build();
             } catch (Exception e) {
-                log.error("SocialAuth error: {}", e);
+                log.error(e.getMessage(), e);
             }
         }
         throw new WebApplicationException(Response.Status.BAD_REQUEST);
@@ -72,32 +72,23 @@ public class PublicOAuthResource {
     @Timed
     @Path("/verify")
     public Response verifyOAuthServerResponse(@Context HttpServletRequest request) {
-
-        // this was placed in the session in the /request resource        
         SocialAuthManager manager = (SocialAuthManager) request.getSession().getAttribute(AUTH_MANAGER);
 
         if (manager != null) {
             try {
-                // call connect method of manager which returns the provider
-                // object
                 Map<String, String> params = SocialAuthUtil.getRequestParametersMap(request);
                 AuthProvider provider = manager.connect(params);
 
-                // get profile
                 Profile p = provider.getUserProfile();
 
                 log.info("Logging in user '{}'", p);
 
-                // at this point, we've been validated, so save off this user's
-                // info
                 User tempUser = new User(UUID.randomUUID());
                 tempUser.setOpenIDIdentifier(p.getValidatedId());
                 tempUser.setOAuthInfo(provider.getAccessGrant());
 
                 tempUser.setEmail(p.getEmail());
 
-
-                // Provide a basic authority in light of successful authentication
                 tempUser.getAuthorities().add(Authority.ROLE_PUBLIC);
                 if ((dibsConfiguration.getAdminUsers() != null) && (tempUser.getEmail() != null)) {
                     Map<String, String> adminUsers = dibsConfiguration.getAdminUsers();
@@ -107,10 +98,8 @@ public class PublicOAuthResource {
                     }
                 }
                 
-                // Search for a pre-existing User matching the temp User
                 Optional<User> userOptional = InMemoryUserCache.INSTANCE.getByOpenIDIdentifier(tempUser.getOpenIDIdentifier());
                 if (!userOptional.isPresent()) {
-                    // Persist the user with the generated session token
                     InMemoryUserCache.INSTANCE.put(tempUser.getSessionToken(), tempUser);
                 } else {
                     tempUser = userOptional.get();
