@@ -25,8 +25,10 @@
                 <table class="orders" ng-repeat="order in grabOrders | filter:query">
                     <tr class=order-row">
                         <td class="order-contents" ng-bind-html="sanitize(order)" border="1"></td>
-                        <td>
-                            <img src="assets/images/dibs_claim_icon.png" ng-click="notifyClaim($event, order)" alt="Claim!">
+                        <td class="claim-button">
+                            <span ng-show="order.claimedBy">This order was claimed by {{order.claimedBy}}</span>
+                            <img ng-show="!order.claimedBy" src="assets/images/mine.jpg" ng-click="claim($event, order)" 
+                                 alt="Claim!">
                         </td>
                     </tr>
                 </table>

@@ -87,7 +87,8 @@ public class DibsResource {
     @GET
     @Path("/orders/{date}/{type}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String findOrders(@PathParam("date") String dateString, @PathParam("type") String type) throws IOException, ParseException {
+    public String findOrders(@Restricted(Authority.ROLE_PUBLIC) User user, @PathParam("date") String dateString,
+                             @PathParam("type") String type) throws IOException, ParseException {
         DateTime dateTime = DateTime.parse(dateString, DateTimeFormat.forPattern("yyyy-MM-dd"));
         DateTime next = dateTime.plusDays(1);
 
@@ -107,7 +108,8 @@ public class DibsResource {
     @POST
     @Path("/notify/{date}/vendor/")
     @Produces(MediaType.APPLICATION_JSON)
-    public String notifyGroup(@PathParam("date") final String dateString, final String vendor) throws ParseException {
+    public String notifyGroup(@Restricted(Authority.ROLE_ADMIN) User user, @PathParam("date") final String dateString,
+                              final String vendor) throws ParseException {
         final DateTime dateTime = DateTime.parse(dateString, DateTimeFormat.forPattern("yyyy-MM-dd"));
         final DateTime next = dateTime.plusDays(1);
         final Query<Order> query = ds.createQuery(Order.class)
@@ -135,7 +137,7 @@ public class DibsResource {
     @POST
     @Path("/notify/order")
     @Produces(MediaType.APPLICATION_JSON)
-    public String notifyOrder(final String orderId) throws ParseException, EmailException {
+    public String notifyOrder(@Restricted(Authority.ROLE_ADMIN) User user, final String orderId) throws ParseException, EmailException {
         final Order order = ds.createQuery(Order.class)
                               .filter("_id", new ObjectId(orderId)).get();
 
@@ -157,9 +159,9 @@ public class DibsResource {
     @Path("/claim")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String claim(final JsonNode node) throws JsonProcessingException {
+    public String claim(@Restricted(Authority.ROLE_PUBLIC) User user, final JsonNode node) throws JsonProcessingException {
         String orderId = node.get("id").textValue();
-        String claimant = node.get("email").textValue();
+        String claimant = user.getEmail();
         Query<Order> filter = ds.createQuery(Order.class)
                                 .filter("id", new ObjectId(orderId));
         filter.or(
@@ -175,27 +177,24 @@ public class DibsResource {
 
         Order order = ds.findAndModify(filter, updates);
 
-        Map<String, Object> response = new LinkedHashMap<>();
 
         if (order != null) {
             try {
                 notifyClaim(order);
-                response.put("ok", 1);
-                //                response.put("message", "You have successfully claimed this order.");
             } catch (EmailException e) {
+                Map<String, Object> response = new LinkedHashMap<>();
                 response.put("ok", 0);
                 response.put("error", Dibs.error());
                 e.printStackTrace();
+                mapper.writeValueAsString(response);
             }
         } else {
-            response.put("ok", 0);
             order = ds.createQuery(Order.class)
                       .filter("id", new ObjectId(orderId))
                       .get();
-            response.put("claimedBy", Dibs.claimedBy(order.getClaimedBy()));
         }
 
-        return mapper.writeValueAsString(response);
+        return mapper.writeValueAsString(order);
     }
 
     private void notifyDelivery(final String email, final Order order) throws EmailException {

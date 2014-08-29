@@ -42,13 +42,13 @@ dibsApp.controller('GrabsListCtrl', function ($scope, $http, $sce) {
     });
 
     // Notify that a single order has been received
-    $scope.notifyClaim = function ($event, order) {
+    $scope.claim = function ($event, order) {
         var data = { 'id': order.id, 'email': ''}
         var url = "/claim";
         $http.post(url, data).success(function (data) {
-            $http.get(grabOrderUrl).success(function (data) {
-                $scope.grabOrders = data;
-            });
+            if(data.claimedBy) {
+                order.claimedBy = data.claimedBy
+            }
         });
     };
     
