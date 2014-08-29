@@ -6,6 +6,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.dibs.model.Order;
+import com.mongodb.dibs.resources.DibsResource;
 import com.mongodb.dibs.test.Sofia;
 import com.sun.jersey.api.client.WebResource;
 import io.dropwizard.testing.junit.ResourceTestRule;
