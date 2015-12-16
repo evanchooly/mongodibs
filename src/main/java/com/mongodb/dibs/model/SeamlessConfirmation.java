@@ -18,6 +18,9 @@ public class SeamlessConfirmation {
     @Id
     private final ObjectId id = new ObjectId();
 
+    @Property("from")
+    private final String from;
+
     @Property("email")
     private final String email;
 
@@ -33,8 +36,9 @@ public class SeamlessConfirmation {
     @Property("body")
     private final String body;
 
-    public SeamlessConfirmation(final String email, final String vendor, final Date expectedAt, final Map<String, String> headers,
-        final String body) {
+    public SeamlessConfirmation(final String from, final String email, final String vendor, final Date expectedAt, final Map<String,
+        String> headers, final String body) {
+        this.from = from;
         this.email = email;
         this.vendor = vendor;
         this.expectedAt = expectedAt;
@@ -48,6 +52,10 @@ public class SeamlessConfirmation {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getFrom() {
+        return from;
     }
 
     public String getVendor() {
@@ -64,5 +72,18 @@ public class SeamlessConfirmation {
 
     public String getBody() {
         return body;
+    }
+
+    @Override
+    public String toString() {
+        return "SeamlessConfirmation{" +
+            "\n\tfrom='" + from + '\'' +
+            "\n\temail='" + email + '\'' +
+            ",\n\texpectedAt=" + expectedAt +
+            ",\n\theaders=" + headers.keySet() +
+            ",\n\tid=" + id +
+            ",\n\tvendor='" + vendor + '\'' +
+//            ", body='" + body + '\'' +
+            "\n}";
     }
 }

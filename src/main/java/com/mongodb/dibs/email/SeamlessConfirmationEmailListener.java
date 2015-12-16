@@ -35,6 +35,7 @@ import java.util.concurrent.TimeUnit;
 
 public class SeamlessConfirmationEmailListener {
     public final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("h:m a M/d/yy");
+    private static final String CONFIRMED = "Confirmed";
 
     private final EmailParser emailParser = new EmailParser();
     private final Session session;
@@ -66,25 +67,26 @@ public class SeamlessConfirmationEmailListener {
     public SeamlessConfirmation parseMessage(final Message message) throws MessagingException {
         MimeMessage content;
         final MimeMessageParser parser;
+        final String from;
         final Address to;
-        final String subject;
+        String subject = null;
         String vendor;
         Date expectedAt;
         try {
-            String forward = findForward(((IMAPMessage) message).getRawInputStream());
-            content = MimeMessageUtils.createMimeMessage(session, forward);
+            content = MimeMessageUtils.createMimeMessage(null, String.valueOf(message.getContent()));
             parser = new MimeMessageParser(content).parse();
             to = parser.getTo().get(0);
+            from = parser.getFrom();
             subject = parser.getSubject();
 
-            vendor = subject.substring(11, subject.indexOf(" received your order"));
+            vendor = subject.substring(subject.indexOf(CONFIRMED) + CONFIRMED.length() +2, subject.indexOf(" received"));
             expectedAt = DATE_FORMAT.parse(subject.substring(subject.indexOf(ESTIMATED_DELIVERY) + ESTIMATED_DELIVERY.length())
                                                   .replaceAll("\\.", "").replace(", on", ""));
         } catch (Exception e) {
-            throw new MessagingException(e.getMessage(), e);
+            throw new MessagingException(e.getMessage() + ": " + subject, e);
         }
 
-        return new SeamlessConfirmation(to.toString(), vendor, expectedAt, getHeadersList(content), getHtmlContent(parser));
+        return new SeamlessConfirmation(from, to.toString(), vendor, expectedAt, getHeadersList(content), getHtmlContent(parser));
     }
 
     private String getHtmlContent(final MimeMessageParser parser) {
@@ -101,7 +103,6 @@ public class SeamlessConfirmationEmailListener {
                 content.append(bufferedReader.readLine())
                        .append("\n");
             }
-            System.out.println("s = " + content);
             return content.toString();
         } catch (MessagingException | IOException e) {
             throw new RuntimeException(e.getMessage(), e);
@@ -112,7 +113,7 @@ public class SeamlessConfirmationEmailListener {
         Scanner scanner = new Scanner(inputStream);
         String line;
         StringBuilder builder = new StringBuilder();
-        while (!(line = scanner.nextLine()).contains("Forwarded message")) {
+        while (!scanner.nextLine().contains("Forwarded message")) {
         }
         while (scanner.hasNextLine()) {
             line = scanner.nextLine();

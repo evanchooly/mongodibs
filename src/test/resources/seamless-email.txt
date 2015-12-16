@@ -1,459 +1,485 @@
-Delivered-To: stephen.lee@10gen.com
-Received: by 10.140.100.172 with SMTP id s41csp116123qge;
-        Wed, 2 Jul 2014 07:05:37 -0700 (PDT)
-X-Received: by 10.220.253.132 with SMTP id na4mr479331vcb.39.1404309937049;
-        Wed, 02 Jul 2014 07:05:37 -0700 (PDT)
-Return-Path: <confirmation@seamless.com>
-Received: from SWApp04.production.seamlessweb.com (mail.seamless.com. [204.246.150.62])
-        by mx.google.com with ESMTP id xb10si12945470vcb.45.2014.07.02.07.05.36
-        for <stephen.lee@10gen.com>;
-        Wed, 02 Jul 2014 07:05:36 -0700 (PDT)
-Received-SPF: pass (google.com: domain of confirmation@seamless.com designates 204.246.150.62 as permitted sender) client-ip=204.246.150.62;
-Authentication-Results: mx.google.com;
-       spf=pass (google.com: domain of confirmation@seamless.com designates 204.246.150.62 as permitted sender) smtp.mail=confirmation@seamless.com
-Received: from mail pickup service by SWApp04.production.seamlessweb.com with Microsoft SMTPSVC;
-	 Wed, 2 Jul 2014 10:05:33 -0400
-MIME-Version: 1.0
-From: confirmation@Seamless.com
-To: stephen.lee@10gen.com
-Date: 2 Jul 2014 10:05:33 -0400
-Subject: Confirmed! Chop't Creative Salad Co. (Times Square) received your
- order. Estimated Delivery: 11:45 a.m., on 7/2/14
-Content-Type: text/html; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
-Message-ID: <SWAPP04QxzmWecm9t0C00015b2a@SWApp04.production.seamlessweb.com>
-X-OriginalArrivalTime: 02 Jul 2014 14:05:33.0632 (UTC) FILETIME=[B0BB2400:01CF95FE]
 
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN"><html>   <head>    =
-    <!-- Display detail about the Products  -->        <title>&nb=
-sp;&nbsp;ORDER# 509961996&nbsp;       &nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         GRAND TOTAL AMOUNT: $15=
-.00        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;TIP AMOUNT:        $1.00       </title>          <meta http=
--equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">      </head>  <body leftmargin=3D"0" topmargin=3D"0" marginhe=
-ight=3D"0" marginwidth=3D"2" >      <!-- BEGIN: body area -->  <!=
---start of section #1: email view-->  <table width=3D"600" align=3D=
-"center" cellpadding=3D"0" cellspacing=3D"0">      <tr>          =
-<td width=3D"600" align=3D"left" valign=3D"top" style=3D"padding-=
-left: 10px; padding-top: 2px">              <a href=3D"http://www=
-.seamless.com/" target=3D"_blank" style=3D"color: #333399; text-d=
-ecoration: none; font-weight: bold; font-family: Arial, Helvetica=
-, sans-serif;">           <img style=3D"border:0;" alt=3D"Thank y=
-ou for your Seamless order!" class=3D"border0" src=3D"https://www=
-.seamless.com/img/confEmail_logo-seamless.gif" width=3D"207" heig=
-ht=3D"31" id=3D"IMG1" onclick=3D"return IMG1_onclick()" /></a>   =
-       </td>      </tr>      <tr>          <td valign=3D"top" sty=
-le=3D"padding-top: 2px;">          <table width=3D"600" align=3D"=
-center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">        =
-      <tr>                  <td valign=3D"top">                  =
-    <table class=3D"rest" align=3D"center" cellspacing=3D"0" bord=
-er=3D"0" style=3D"border-top: 4px solid #cccccc;" cellpadding=3D"=
-0" width=3D"600">                          <tr>                  =
-            <td width=3D"288" valign=3D"top">                    =
-              <div class=3D"header2" align=3D"left" style=3D"font=
--family: Arial, Helvetica, sans-serif; font-size: 18px; padding-t=
-op: .25em; padding-bottom: .25em; line-height: 22px; color: #4444=
-44; text-align: left; font-weight: normal;">Chop't Creative Salad=
- Co. (Times Square)</div>                                  <div c=
-lass=3D"header3" align=3D"left" style=3D"margin-bottom: 5px; font=
--weight: normal; font-size: 14px; padding-top: 0em; padding-right=
-: 0em; padding-bottom: .25em; line-height: 18px; font-family: Ari=
-al, Helvetica, sans-serif; color: #000000; text-align: left;">Pho=
-ne: (212) 354-3284</div>                              </td>      =
-                        <td width=3D"24" valign=3D"top">&nbsp;</t=
-d>                              <td width=3D"288" valign=3D"top">=
-                                  <div class=3D"header2" align=3D=
-"left" style=3D"font-family: Arial, Helvetica, sans-serif; font-s=
-ize: 18px; padding-top: .25em; padding-bottom: .25em; line-height=
-: 22px; color: #000000; text-align: left; font-weight: normal;">O=
-rder #:<span class=3D"red" style=3D"color: #c90117;"> 509961996&n=
-bsp;&nbsp; </span></div>                                  <div id=
-=3D"OrderedDay" class=3D"header3" align=3D"left" style=3D"font-fa=
-mily: Arial, Helvetica, sans-serif; padding-top: 0em; padding-rig=
-ht: 0em; padding-bottom: .25em; font-size: 12px; line-height: 17p=
-x; color: #000000; text-align: left; font-weight: normal;"><span =
-style=3D"font-size: 12px !important;">Ordered: </span>Tuesday, Ju=
-ly 01, 2014 10:33 AM</div>                              </td>    =
-                      </tr>                      </table>        =
-              <!--end of section #1-->                      <!--s=
-tart of section #2-->                      <table class=3D"delive=
-r" cellspacing=3D"0" align=3D"center" border=3D"0" cellpadding=3D=
-"0" width=3D"600" bgcolor=3D"#ffffff" style=3D"border-bottom: non=
-e !important; background-color: #ffffff !important; padding-top: =
-5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; =
-border-top: none !important;">                          <tr>     =
-                         <td>                                  <!=
--- BEGIN: Delivery Table -->  <!-- Delivery Table for email view =
--->  <table width=3D"600" border=3D"0" align=3D"center" cellspaci=
-ng=3D"0" cellpadding=3D"0">   <tr>       <td class=3D"time" align=
-=3D"center" valign=3D"top" bgcolor=3D"#ffffcc" style=3D"backgroun=
-d-color: #ffffcc; border: 1px dashed #cccca3; padding-top: 5px; p=
-adding-right: 5px; padding-bottom: 5px; padding-left: 5px;" colsp=
-an=3D"3">    <span class=3D"header1" style=3D"font-family: Arial,=
- Helvetica, sans-serif; font-size: 18px; padding-top: 0em; paddin=
-g-right: 0em; padding-bottom: 0em; line-height: 22px; color: #444=
-444; text-align: center; font-weight: bold;">    <!-- ***********=
-*********************************** -->    <!-- Change Logic if n=
-eeded here for (1) catering   -->    <!-- ***********************=
-*********************** -->         <div class=3D"fontSmallerBlac=
-kBold">       (GROUP ORDER) <br />    </div>         Delivery on =
-<span class=3D"red" style=3D"color: #444444;">Wednesday, July 02,=
- 2014</span> at <span class=3D"red" style=3D"color: #c90117;">11:=
-45 AM</span>     </span>           </td>   </tr>     </table>  <!=
---Estimated Delivery/Pickup/Setup Time Table for email view-->  <=
-!-- Start of Table with Delivery Information fpr email view -->  =
-       <table class=3D"deliver" cellspacing=3D"0" border=3D"0" al=
-ign=3D"center" bgcolor=3D"#ffffff" style=3D"border-bottom: none; =
-background-color: #ffffff; padding-top: 5px; padding-right: 5px; =
-padding-bottom: 5px; padding-left: 5px;" cellpadding=3D"0" width=3D=
-"600">   <tr>    <td>      <div class=3D"HeaderBox01Email">     <=
-table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"c=
-enter" width=3D"600" id=3D"deliveryinfo" bgcolor=3D"#f7f7f7" styl=
-e=3D"border-bottom: 4px solid #cccccc; background-color: #f7f7f7;=
- padding-top: 5px; padding-right: 5px; padding-bottom: 5px; paddi=
-ng-left: 5px; border-top: 1px solid #cccccc;">      <tr><!-- Colu=
-mn #1 -->      <td width=3D"288" valign=3D"top">     <span class=3D=
-"header3" style=3D"font-family: Arial, Helvetica, sans-serif; fon=
-t-size: 14px; padding-bottom: .25em; line-height: 18px; color: #0=
-00000; text-align: left; font-weight: normal;"><strong>Deliver to=
-: </strong></span><br />      <span class=3D"text" style=3D"font-=
-family: Arial, Helvetica, sans-serif; font-size: 12px; line-heigh=
-t: 20px; margin: 0em; padding: 0em; color: #000000; text-align: l=
-eft;">      Stephen Lee</span><br />       <span class=3D"text" s=
-tyle=3D"font-family: Arial, Helvetica, sans-serif; font-size: 12p=
-x; line-height: 20px; margin: 0em; padding: 0em; color: #000000; =
-text-align: left;">MongoDB</span><br />            <span class=3D=
-"text" style=3D"font-family: Arial, Helvetica, sans-serif; font-s=
-ize: 12px; line-height: 20px; margin: 0em; padding: 0em; color: #=
-000000; text-align: left;">232 West 44th Street</span><br />     =
-   <span class=3D"text" style=3D"font-family: Arial, Helvetica, s=
-ans-serif; font-size: 12px; line-height: 20px; margin: 0em; paddi=
-ng: 0em; color: #000000; text-align: left;">Use freight entrance =
-at 232 W. 44th Street</span><br />        <span class=3D"text" st=
-yle=3D"font-family: Arial, Helvetica, sans-serif; font-size: 12px=
-; line-height: 20px; margin: 0em; padding: 0em; color: #000000; t=
-ext-align: left;">City: New York</span><br />       <span class=3D=
-"text" style=3D"font-family: Arial, Helvetica, sans-serif; font-s=
-ize: 12px; line-height: 20px; margin: 0em; padding: 0em; color: #=
-000000; text-align: left;">Apt/Flat/Suite/Floor #: <span style=3D=
-"text-transform: uppercase;">5</span></span><br />       <span cl=
-ass=3D"header3" style=3D"font-size: 14px; font-weight: normal; ma=
-rgin: 0em; padding-top: 0em; padding-right: 0em; padding-bottom: =
-.25em; line-height: 18px; font-family: Arial, Helvetica, sans-ser=
-if; color: #000000; text-align: left;"><strong>(866) 237-8899</st=
-rong></span><br />    </td>                      <!-- Delivery In=
-formation - Column #3 -->     <td width=3D"288" valign=3D"top">  =
-    <span class=3D"header3" style=3D"font-size: 14px; font-weight=
-: normal; margin-top: 0em; margin-right: 0em; margin-bottom: .125=
-em; padding-top: 0em; padding-right: 0em; padding-bottom: .25em; =
-line-height: 18px; font-family: Arial, Helvetica, sans-serif; col=
-or: #000000; text-align: left;"><strong>Delivery Instructions:<br=
- /></strong></span>       <span class=3D"text" style=3D"font-fami=
-ly: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 2=
-0px; margin: 0em; padding: 0em; color: #000000; text-align: left;=
-"><strong></strong></span>       <span class=3D"text" style=3D"fo=
-nt-family: Arial, Helvetica, sans-serif; font-size: 12px; line-he=
-ight: 20px; margin: 0em; padding: 0em; color: #c90117; text-align=
-: left;"><br /><strong>** FUTURE ORDER **</span>      <div class=3D=
-"ecotogo" style=3D"font-family: Arial, Helvetica, sans-serif; fon=
-t-size: 12px; line-height: 20px; margin: 0em; padding: 0em; color=
-: #000000; text-align: left; font-weight: bold;">Please include p=
-lastic utensils, napkins, etc.</div>          </td>         </tr>=
-     </div>    </td>                </tr>  </table>              =
-                    <!-- END: Delivery Table -->                 =
-             </td>                          </tr>                =
-   <link rel=3D"stylesheet" href=3D"./css/order.css?_ed711b85_d3d=
-a_4de8_8436_d41cb1623081" media=3D"all" />   <!--first section em=
-ail, revised or normal view-->      <tr>      <td>          <tabl=
-e width=3D"600" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
-class=3D"items" style=3D"background-color: #ffffff;" bgcolor=3D"#=
-ffffff" align=3D"center">              <tr>                  <td =
-height=3D"5" colspan=3D"6"></td>              </tr>              =
-<tr>                  <td width=3D"26">                <span clas=
-s=3D"header2" style=3D"font-family: Arial, Helvetica, sans-serif;=
- font-size: 18px; padding-top: .25em; padding-bottom: .25em; line=
--height: 22px; color: #000000; text-align: left; font-weight: nor=
-mal;"><span class=3D"red" style=3D"color: #c90117;"><strong>1</st=
-rong></span></span>            </td>            <td class=3D"text=
-" align=3D"left" style=3D"font-family: Arial, Helvetica, sans-ser=
-if; font-size: 12px; line-height: 20px; margin: 0em; padding: 0em=
-; color: #000000; text-align: left;" width=3D"355"><strong>Cairo =
-Cobb Salad</strong>            </td>                  <td class=3D=
-"text" align=3D"left" style=3D"font-family: Arial, Helvetica, san=
-s-serif; font-size: 12px; line-height: 20px; margin: 0em; padding=
-: 0em; color: #000000; text-align: left;" width=3D"59">          =
-            $9.79                  </td>            <td class=3D"=
-text" align=3D"left" style=3D"font-family: Arial, Helvetica, sans=
--serif; font-size: 12px; line-height: 20px; margin: 0em; padding:=
- 0em; color: #000000; text-align: left;" width=3D"24">           =
-     x 1            </td>            <td class=3D"text" align=3D"=
-left" style=3D"font-family: Arial, Helvetica, sans-serif; font-si=
-ze: 12px; line-height: 20px; margin: 0em; padding: 0em; color: #0=
-00000; text-align: left;" width=3D"25">                =3D       =
-     </td>            <td class=3D"text" align=3D"left" style=3D"=
-font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-=
-height: 20px; margin: 0em; padding: 0em; color: #000000; text-ali=
-gn: left;" width=3D"81">                $12.86            </td>  =
-            </tr>           <tr>                  <td width=3D"26=
-">&nbsp;</td>                  <td class=3D"text" align=3D"left" =
-style=3D"font-family: Arial, Helvetica, sans-serif; font-size: 12=
-px; line-height: 18px; margin: 0em; padding: 0em; color: #000000;=
- text-align: left;" width=3D"355">                        <p styl=
-e=3D"font-size: 12px; margin: 0em; padding: 0em; font-family: Ari=
-al, Helvetica, sans-serif; line-height: 18px; color: #000000; tex=
-t-align: left; list-style: disc;">&nbsp;&nbsp;&nbsp; &bull; &nbsp=
-;&nbsp;&nbsp;Chickpeas</p>            </td>                  <td =
-class=3D"text" align=3D"left" style=3D"font-family: Arial, Helvet=
-ica, sans-serif; font-size: 12px; line-height: 20px; margin: 0em;=
- padding: 0em; color: #000000; text-align: left;" width=3D"59">  =
-              $0.59                  </td>                  <td c=
-lass=3D"text" align=3D"left" style=3D"font-family: Arial, Helveti=
-ca, sans-serif; font-size: 12px; line-height: 20px; margin: 0em; =
-padding: 0em; color: #000000; text-align: left;" width=3D"24">&nb=
-sp;</td>                  <td class=3D"text" align=3D"left" style=
-=3D"font-family: Arial, Helvetica, sans-serif; font-size: 12px; l=
-ine-height: 20px; margin: 0em; padding: 0em; color: #000000; text=
--align: left;" width=3D25">&nbsp;</td>           </tr>           =
-<tr>                  <td width=3D"26">&nbsp;</td>               =
-   <td class=3D"text" align=3D"left" style=3D"font-family: Arial,=
- Helvetica, sans-serif; font-size: 12px; line-height: 18px; margi=
-n: 0em; padding: 0em; color: #000000; text-align: left;" width=3D=
-"355">                        <p style=3D"font-size: 12px; margin=
-: 0em; padding: 0em; font-family: Arial, Helvetica, sans-serif; l=
-ine-height: 18px; color: #000000; text-align: left; list-style: d=
-isc;">&nbsp;&nbsp;&nbsp; &bull; &nbsp;&nbsp;&nbsp;Craisins</p>   =
-         </td>                  <td class=3D"text" align=3D"left"=
- style=3D"font-family: Arial, Helvetica, sans-serif; font-size: 1=
-2px; line-height: 20px; margin: 0em; padding: 0em; color: #000000=
-; text-align: left;" width=3D"59">                $0.99          =
-        </td>                  <td class=3D"text" align=3D"left" =
-style=3D"font-family: Arial, Helvetica, sans-serif; font-size: 12=
-px; line-height: 20px; margin: 0em; padding: 0em; color: #000000;=
- text-align: left;" width=3D"24">&nbsp;</td>                  <td=
- class=3D"text" align=3D"left" style=3D"font-family: Arial, Helve=
-tica, sans-serif; font-size: 12px; line-height: 20px; margin: 0em=
-; padding: 0em; color: #000000; text-align: left;" width=3D25">&n=
-bsp;</td>           </tr>           <tr>                  <td wid=
-th=3D"26">&nbsp;</td>                  <td class=3D"text" align=3D=
-"left" style=3D"font-family: Arial, Helvetica, sans-serif; font-s=
-ize: 12px; line-height: 18px; margin: 0em; padding: 0em; color: #=
-000000; text-align: left;" width=3D"355">                        =
-<p style=3D"font-size: 12px; margin: 0em; padding: 0em; font-fami=
-ly: Arial, Helvetica, sans-serif; line-height: 18px; color: #0000=
-00; text-align: left; list-style: disc;">&nbsp;&nbsp;&nbsp; &bull=
-; &nbsp;&nbsp;&nbsp;Avocado</p>            </td>                 =
- <td class=3D"text" align=3D"left" style=3D"font-family: Arial, H=
-elvetica, sans-serif; font-size: 12px; line-height: 20px; margin:=
- 0em; padding: 0em; color: #000000; text-align: left;" width=3D"5=
-9">                $1.49                  </td>                  =
-<td class=3D"text" align=3D"left" style=3D"font-family: Arial, He=
-lvetica, sans-serif; font-size: 12px; line-height: 20px; margin: =
-0em; padding: 0em; color: #000000; text-align: left;" width=3D"24=
-">&nbsp;</td>                  <td class=3D"text" align=3D"left" =
-style=3D"font-family: Arial, Helvetica, sans-serif; font-size: 12=
-px; line-height: 20px; margin: 0em; padding: 0em; color: #000000;=
- text-align: left;" width=3D25">&nbsp;</td>           </tr>      =
-     <tr>                  <td width=3D"26">&nbsp;</td>          =
-        <td class=3D"text" align=3D"left" style=3D"font-family: A=
-rial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; =
-margin: 0em; padding: 0em; color: #000000; text-align: left;" wid=
-th=3D"355">                        <p style=3D"font-size: 12px; m=
-argin: 0em; padding: 0em; font-family: Arial, Helvetica, sans-ser=
-if; line-height: 18px; color: #000000; text-align: left; list-sty=
-le: disc;">&nbsp;&nbsp;&nbsp; &bull; &nbsp;&nbsp;&nbsp;Lemon Tahi=
-ni Dressing</p>            </td>                  <td class=3D"te=
-xt" align=3D"left" style=3D"font-family: Arial, Helvetica, sans-s=
-erif; font-size: 12px; line-height: 20px; margin: 0em; padding: 0=
-em; color: #000000; text-align: left;" width=3D"59">             =
-       &nbsp;                  </td>                  <td class=3D=
-"text" align=3D"left" style=3D"font-family: Arial, Helvetica, san=
-s-serif; font-size: 12px; line-height: 20px; margin: 0em; padding=
-: 0em; color: #000000; text-align: left;" width=3D"24">&nbsp;</td=
->                  <td class=3D"text" align=3D"left" style=3D"fon=
-t-family: Arial, Helvetica, sans-serif; font-size: 12px; line-hei=
-ght: 20px; margin: 0em; padding: 0em; color: #000000; text-align:=
- left;" width=3D25">&nbsp;</td>           </tr>           <tr>   =
-               <td width=3D"26">&nbsp;</td>                  <td =
-class=3D"text" align=3D"left" style=3D"font-family: Arial, Helvet=
-ica, sans-serif; font-size: 12px; line-height: 18px; margin: 0em;=
- padding: 0em; color: #000000; text-align: left;" width=3D"355"> =
-                       <p style=3D"font-size: 12px; margin: 0em; =
-padding: 0em; font-family: Arial, Helvetica, sans-serif; line-hei=
-ght: 18px; color: #000000; text-align: left; list-style: disc;">&=
-nbsp;&nbsp;&nbsp; &bull; &nbsp;&nbsp;&nbsp;Dressing Mixed In</p> =
-           </td>                  <td class=3D"text" align=3D"lef=
-t" style=3D"font-family: Arial, Helvetica, sans-serif; font-size:=
- 12px; line-height: 20px; margin: 0em; padding: 0em; color: #0000=
-00; text-align: left;" width=3D"59">                    &nbsp;   =
-               </td>                  <td class=3D"text" align=3D=
-"left" style=3D"font-family: Arial, Helvetica, sans-serif; font-s=
-ize: 12px; line-height: 20px; margin: 0em; padding: 0em; color: #=
-000000; text-align: left;" width=3D"24">&nbsp;</td>              =
-    <td class=3D"text" align=3D"left" style=3D"font-family: Arial=
-, Helvetica, sans-serif; font-size: 12px; line-height: 20px; marg=
-in: 0em; padding: 0em; color: #000000; text-align: left;" width=3D=
-25">&nbsp;</td>           </tr>   </table>      </td>  </tr>  <!-=
--end first section email, revised or normal view-->  <!--second s=
-ection email, revised or normal view-->  <tr>      <td>          =
-    <table width=3D"600" border=3D"0" cellspacing=3D"0" cellpaddi=
-ng=3D"0">     <!--Product Total, Sales Tax, etc --->             =
-     <tr >                      <td valign=3D"middle" width=3D"34=
-0" style=3D"border-top: 1px solid #cccccc; padding-top: 2px;">&nb=
-sp;</td>                      <td width=3D"98" align=3D"right" va=
-lign=3D"middle" style=3D"border-top: 1px solid #cccccc; padding-t=
-op: 2px;"><span style=3D"font-family: Arial, Helvetica, sans-seri=
-f; font-size: 12px; line-height: 20px; margin: 0em; padding: 0em;=
- color: #000000; text-align: right;">Product Total: &nbsp;</span>=
-</td>                      <td width=3D"30" align=3D"left" valign=
-=3D"middle" style=3D"border-top: 1px solid #cccccc; padding-top: =
-2px; font-family: Arial, Helvetica, sans-serif; font-size: 12px; =
-line-height: 20px; margin: 0em; color: #000000; text-align: left;=
-">&nbsp;=3D</td>                      <td width=3D"76" align=3D"l=
-eft" valign=3D"middle" style=3D"border-top: 1px solid #cccccc; pa=
-dding-top: 2px;"><span id=3D"ProductTotal" style=3D"font-family: =
-Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px;=
- margin: 0em; padding: 0em; color: #000000; text-align: left;">$1=
-2.86</span></td>                  </tr>                  <tr >   =
-                   <td valign=3D"middle" width=3D"340">&nbsp;</td=
->                      <td width=3D"98" align=3D"right" valign=3D=
-"middle"><span style=3D"font-family: Arial, Helvetica, sans-serif=
-; font-size: 12px; line-height: 20px; margin: 0em; padding: 0em; =
-color: #000000; text-align: right;">Sales Tax: &nbsp;</span></td>=
-                      <td width=3D"30" align=3D"left" valign=3D"m=
-iddle" style=3D"font-family: Arial, Helvetica, sans-serif; font-s=
-ize: 12px; line-height: 20px; margin: 0em; color: #000000; text-a=
-lign: left;">&nbsp;=3D</td>                      <td width=3D"76"=
- align=3D"left" valign=3D"middle"><span id=3D"SalesTax" style=3D"=
-font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-=
-height: 20px; margin: 0em; padding: 0em; color: #000000; text-ali=
-gn: left;">$1.14</span></td>                  </tr>              =
-    <tr >                      <td valign=3D"middle" width=3D"340=
-">&nbsp;</td>                      <td width=3D"98" align=3D"righ=
-t" valign=3D"middle"><span style=3D"font-family: Arial, Helvetica=
-, sans-serif; font-size: 12px; line-height: 20px; margin: 0em; pa=
-dding: 0em; color: #000000; text-align: right;">Tip Amount: &nbsp=
-;</span></td>                      <td width=3D"30" align=3D"left=
-" valign=3D"middle" style=3D"font-family: Arial, Helvetica, sans-=
-serif; font-size: 12px; line-height: 20px; margin: 0em; color: #0=
-00000; text-align: left;">&nbsp;=3D</td>                      <td=
- width=3D"76" align=3D"left" valign=3D"middle"><span id=3D"TipAmo=
-unt" style=3D"font-family: Arial, Helvetica, sans-serif; font-siz=
-e: 12px; line-height: 20px; margin: 0em; padding: 0em; color: #00=
-0000; text-align: left;">$1.00</span></td>                  </tr>=
-                          <tr >                              <td =
-valign=3D"middle" width=3D"340">&nbsp;</td>                      =
-        <td width=3D"98" align=3D"right" valign=3D"middle"><span =
-style=3D"font-family: Arial, Helvetica, sans-serif; font-size: 12=
-px; line-height: 20px; margin: 0em; padding: 0em; color: #c90117;=
- text-align: right; font-weight: bold;">Grand Total: &nbsp;</span=
-></td>                              <td width=3D"30" align=3D"lef=
-t" valign=3D"middle" style=3D"font-family: Arial, Helvetica, sans=
--serif; font-size: 12px; line-height: 20px; margin: 0em; color: #=
-c90117; text-align: left;">&nbsp;=3D</td>                        =
-      <td width=3D"76" align=3D"left" valign=3D"middle"><span id=3D=
-"GrandTotal" style=3D"font-family: Arial, Helvetica, sans-serif; =
-font-size: 12px; line-height: 20px; margin: 0em; padding: 0em; co=
-lor: #c90117; text-align: left; font-weight: bold;">$15.00</span>=
-</td>                          </tr>                <tr>         =
-         <td height=3D"5" colspan=3D"6" valign=3D"bottom"></td>  =
-              </tr>        </table>    </td>    </tr>          <t=
-r>              <td>           <table border=3D"0" width=3D"600" =
-style=3D"width:600" align=3D"center"> <!-- This table holds the e=
-vent notes -->           </table>              </td>          </t=
-r>    <tr>    <td>        <table class=3D"allocation" cellspacing=
-=3D"0" border=3D"0" style=3D"border-top: 5px solid #cccccc;" cell=
-padding=3D"0" width=3D"600">     <!--Allocated Member, Expense co=
-de, Amount  -->     <tr>                  <td width=3D"200" valig=
-n=3D"top"><span class=3D"text" style=3D"font-family: Arial, Helve=
-tica, sans-serif; font-size: 12px; line-height: 20px; margin: 0em=
-; padding: 0em; color: #000000; text-align: left;"> <strong>     =
-         Allocated Member:             </strong></span>      </td=
->         <td width=3D"200" valign=3D"top" ><span class=3D"text" =
-style=3D"font-family: Arial, Helvetica, sans-serif; font-size: 12=
-px; line-height: 20px; margin: 0em; padding: 0em; color: #000000;=
- text-align: left;"><strong>              Expense Code:          =
-</strong></span>                  </td>         <td width=3D"200"=
- valign=3D"top" ><span class=3D"text" style=3D"font-family: Arial=
-, Helvetica, sans-serif; font-size: 12px; line-height: 20px; marg=
-in: 0em; padding: 0em; color: #000000; text-align: left;"><strong=
->Amount:</strong></span></td>     </tr>     <tr>         <td clas=
-s=3D"text" align=3D"left" valign=3D"top" style=3D"font-family: Ar=
-ial, Helvetica, sans-serif; font-size: 12px; line-height: 20px; m=
-argin: 0em; padding: 0em; color: #000000; text-align: left;" widt=
-h=3D"200">             <span class=3D"text" style=3D"font-size: 1=
-2px; margin: 0em; padding-bottom: 4px; line-height: 20px; font-fa=
-mily: Arial, Helvetica, sans-serif; color: #000000; text-align: l=
-eft;">              Stephen Lee          </span>         </td>   =
-      <td class=3D"text" align=3D"left" valign=3D"top" style=3D"f=
-ont-family: Arial, Helvetica, sans-serif; font-size: 12px; line-h=
-eight: 20px; margin: 0em; padding: 0em; color: #000000; text-alig=
-n: left;" width=3D"200">             <span class=3D"text" style=3D=
-"font-size: 12px; margin: 0em; padding-bottom: 4px; line-height: =
-20px; font-family: Arial, Helvetica, sans-serif; color: #000000; =
-text-align: left;">           </span>         </td>         <td c=
-lass=3D"text" align=3D"left" valign=3D"top" style=3D"font-family:=
- Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px=
-; margin: 0em; padding: 0em; color: #000000; text-align: left;" w=
-idth=3D"200">         <span class=3D"text" style=3D"font-size: 12=
-px; margin: 0em; padding-bottom: 4px; line-height: 20px; font-fam=
-ily: Arial, Helvetica, sans-serif; color: #000000; text-align: le=
-ft;">      $15.00     </tr>     <tr>         <td class=3D"dashed"=
- valign=3D"top" style=3D"border-top: 1px dashed #cccccc; padding-=
-top: 2px;" width=3D"200"><span class=3D"text" style=3D"font-famil=
-y: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20=
-px; margin: 0em; padding: 0em; color: #000000; text-align: left;"=
-><strong>Payment Information</strong></span></td>         <td cla=
-ss=3D"dashed" valign=3D"top" style=3D"border-top: 1px dashed #ccc=
-ccc; padding-top: 2px;" width=3D"200"><span class=3D"text" style=3D=
-"font-family: Arial, Helvetica, sans-serif; font-size: 12px; line=
--height: 20px; margin: 0em; padding: 0em; color: #000000; text-al=
-ign: left;"><strong>Amount</strong></span></td>         <td class=
-=3D"dashed" valign=3D"top" style=3D"border-top: 1px dashed #ccccc=
-c; padding-top: 2px;" width=3D"200"><span class=3D"text" style=3D=
-"font-family: Arial, Helvetica, sans-serif; font-size: 12px; line=
--height: 20px; margin: 0em; padding: 0em; color: #000000; text-al=
-ign: left;"><strong>Order Type</strong></span></td>     </tr>    =
-     <tr>             <td style=3D"font-family: Arial, Helvetica,=
- sans-serif; font-size: 12px; line-height: 20px; margin: 0em; pad=
-ding: 0em; color: #000000; text-align: left;">Line of Credit</td>=
-                 <td style=3D"font-family: Arial, Helvetica, sans=
--serif; font-size: 12px; line-height: 20px; margin: 0em; padding:=
- 0em; color: #000000; text-align: left;">$15.00</td>             =
-<td style=3D"font-family: Arial, Helvetica, sans-serif; font-size=
-: 12px; line-height: 20px; margin: 0em; padding: 0em; color: #000=
-000; text-align: left;">Firm</td>                  </tr>        <=
-/table>    </td>       </tr>  <tr>      <td>     <table border=3D=
-"0" width=3D"600" align=3D"center" cellpadding=3D"0" cellspacing=3D=
-"0" id=3D"footer">       <!-- This table holds the footer --->   =
-    <tr>    <!-- Row #1 -->    <td class=3D"center">        <span=
- class=3D"text" style=3D"font-family: Arial, Helvetica, sans-seri=
-f; font-size: 12px; line-height: 20px; margin: 0em; padding-top: =
-2px; color: #000000; text-align: left;">For food or delivery/pick=
-up related issues, please contact Chop't Creative Salad Co. (Time=
-s Square) at <strong style=3D"background-color: #ffffaa; font-wei=
-ght: bold;">(212) 354-3284</strong>        <br />        For bill=
-ing questions or support, contact Seamless at <strong style=3D"ba=
-ckground-color: #ffffaa; font-weight: bold;">(800) 905-9322</stro=
-ng>        or <a href=3D"mailto:care@seamless.com" style=3D"color=
-: #333399; text-decoration: none; font-weight: bold; font-family:=
- Arial, Helvetica, sans-serif;"><span style=3D"color:#333399;">ca=
-re@seamless.com</span></a></span>    </td>       </tr>          <=
-tr>              <td class=3D"footer" align=3D"center" valign=3D"=
-top" style=3D"font-size: 10px; margin: 0em; font-family: Arial, H=
-elvetica, sans-serif; line-height: 16px; color: #999999; padding-=
-top: 5px; text-align: left; border-top: 4px solid #cccccc;"><a hr=
-ef=3D"http://www.seamless.com/contact-us/" target=3D"_blank" styl=
-e=3D"font-weight: bold; font-family: Arial, Helvetica, sans-serif=
-; text-decoration: underline; color: #999999;"><span style=3D"col=
-or: #999999;">Contact Us</span></a> &bull; <a href=3D"http://www.=
-seamless.com/business/privacy.html" target=3D"_blank" style=3D"fo=
-nt-weight: bold; font-family: Arial, Helvetica, sans-serif; text-=
-decoration: underline; color: #999999;"><span style=3D"color: #99=
-9999;">Privacy Policy</span></a> &copy; 2014 Seamless. All rights=
- reserved.</td>          </tr>   </table>  </td>  </tr>  <!--end =
-second section email, revised or normal view-->                  =
-    <!-- End Control -->                         </table>        =
-          </td>              </tr>          </table>          </t=
-d>      </tr>  </table>      <!-- END: body area -->   </body>   =
-</html> =20
+Delivered-To: seamless.notifications@gmail.com
+Received: by 10.202.105.15 with SMTP id e15csp1986972oic;
+        Wed, 16 Dec 2015 12:08:29 -0800 (PST)
+X-Received: by 10.140.23.163 with SMTP id 32mr30942513qgp.60.1450296509112;
+        Wed, 16 Dec 2015 12:08:29 -0800 (PST)
+Return-Path: <someguy@example.com>
+Received: from mail-qk0-x22d.google.com (mail-qk0-x22d.google.com. [2607:f8b0:400d:c09::22d])
+        by mx.google.com with ESMTPS id k9si7721452qge.59.2015.12.16.12.08.29
+        for <seamless.notifications@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 16 Dec 2015 12:08:29 -0800 (PST)
+Received-SPF: pass (google.com: domain of someguy@example.com designates 2607:f8b0:400d:c09::22d as permitted sender) client-ip=2607:f8b0:400d:c09::22d;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of someguy@example.com designates 2607:f8b0:400d:c09::22d as permitted sender) smtp.mailfrom=someguy@example.com;
+       dkim=pass header.i=@mongodb.com;
+       dmarc=pass (p=NONE dis=NONE) header.from=mongodb.com
+Received: by mail-qk0-x22d.google.com with SMTP id k189so80013890qkc.0
+        for <seamless.notifications@gmail.com>; Wed, 16 Dec 2015 12:08:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mongodb.com; s=google;
+        h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+         :content-type;
+        bh=t4qPgTiMsMlji4K7ILfk0Jgy0Z/2zwSpdgC11Pm9Uj8=;
+        b=Lu91qV8Qg6UiWGYVv4s87fSZBK+WDZZ6aOzDKpGxZNi+DTkci27ISdpYlwGGZ4FMk1
+         0Bgi1BxrOFq4f4LJtHttQQDzM+TmTrBFXSII/pjq1Fw2rxZ6DYOmLSvq5rghmPkuDs04
+         snY1PDJReKlxfRBzGBS3M4NNeHYN1QgKDOmo0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:in-reply-to:references:date
+         :message-id:subject:from:to:content-type;
+        bh=t4qPgTiMsMlji4K7ILfk0Jgy0Z/2zwSpdgC11Pm9Uj8=;
+        b=JJcfiyCjJERy84jxIXkzKGHaxERvWA/QBYI+Hp1BRhY+W3D+aCDNUXPElIsGXHv+gM
+         ptPjiRUT2kzV4RBJS+eclSMYDyF16VVEo2pmXfY2tDUEXAJXv8gJSZqguQbhP+AmMW4B
+         /sNxYQ5TIM3tdYRBJWbimhPSQ6irUKsutgCgFe2mp6LPxqxU+mbjezYfgTDOJ3wem+bu
+         qcvaFaeg6fVbRogoCPFqUF5xwQFOBPcrxM4g1nwpDPv6Ww1MNILxyWLGCgrfDPwGsuYu
+         c8ArDJTojrnzj+36rS1xgm13zWdcpuNT9Ry/JnFIMfsWh3WKUx/AxazsB1OVQlU/QMA+
+         CdKQ==
+X-Gm-Message-State: ALoCoQm1SStyJfFmb/C9SSIG9x5u8BBhfFA3S8fW+WqDCd8jPSTvgpzcYk3mFCdcPKnz3mC6lFLhPyWsw+tLBS8TE5GMTJuk/UV0DeCrQf6PC3EEHXJt3wU=
+MIME-Version: 1.0
+X-Received: by 10.129.90.8 with SMTP id o8mr18870783ywb.216.1450296508785;
+ Wed, 16 Dec 2015 12:08:28 -0800 (PST)
+Received: by 10.37.115.147 with HTTP; Wed, 16 Dec 2015 12:08:28 -0800 (PST)
+In-Reply-To: <SWAPP03TM9wGmAf0Mjk00011362@swapp03.production.seamlessweb.com>
+References: <SWAPP03TM9wGmAf0Mjk00011362@swapp03.production.seamlessweb.com>
+Date: Wed, 16 Dec 2015 15:08:28 -0500
+Message-ID: <CAH7JHGfSOidRnTjYQgPusT8Sf+v-uBo=My-3LdX6sNCu+TJTrg@mail.gmail.com>
+Subject: =?UTF-8?Q?Fwd=3A_Confirmed=21_Lenwich_by_Lenny=E2=80=99s_=2843rd_Street=29_r?=
+	=?UTF-8?Q?eceived_your_order=2E_Estimated_Delivery=3A_11=3A45_a=2Em=2E=2C_on_12=2F15?=
+	=?UTF-8?Q?=2F15?=
+From: Some Guy <someguy@example.com>
+To: seamless.notifications@gmail.com
+Content-Type: multipart/alternative; boundary=001a11491bb239d7190527097817
+
+--001a11491bb239d7190527097817
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+---------- Forwarded message ----------
+From: Do Not Reply <confirmation@seamless.com>
+Date: Tue, Dec 15, 2015 at 10:02 AM
+Subject: Confirmed! Lenwich by Lenny=E2=80=99s (43rd Street) received your =
+order.
+Estimated Delivery: 11:45 a.m., on 12/15/15
+To: someguy@example.com
+
+
+[image: Thank you for your Seamless order!] <http://www.seamless.com/>
+Lenwich by Lenny=E2=80=99s (43rd Street)
+Phone: (212) 957-7800
+
+Order #: 1683750997
+Ordered: Tuesday, December 15, 2015 10:01 AM
+Delivery on Tuesday, December 15, 2015 at 11:45 AM
+*Deliver to: *
+Some Guy
+Example.com
+123 West 4th Street
+City: Somewhere
+Apt/Flat/Suite/Floor #: 42
+*(123) 456-7890*
+
+*Delivery Instructions:*
+*** FUTURE ORDER ***
+Do not include plastic utensils, napkins, etc.
+*1* *Chicken Cheddar* $7.99 x 1 =3D $8.49
+
+    =E2=80=A2    Sourdough Bread
+
+
+    =E2=80=A2    Lightly Toasted
+
+
+    =E2=80=A2    Onion
+
+
+    =E2=80=A2    Sweet Pepper
+$0.50
+
+    =E2=80=A2    Chipotle Ranch
+        Product Total:    =3D $8.49   Sales Tax:    =3D $0.75   Tip Amount:=
+    =3D
+$2.00   Grand Total:    =3D $11.24 * Allocated Member: * * Expense Code: *
+*Amount:* Some Guy $11.24 *Payment Information* *Amount* *Order Type* Lin=
+e
+of Credit $11.24 Firm For food or delivery/pickup related issues, please
+contact Lenwich by Lenny=E2=80=99s (43rd Street) at *(212) 957-7800*
+Contact Us <http://www.seamless.com/contact-us/> =E2=80=A2 Privacy Policy
+<http://www.seamless.com/business/privacy.html> =C2=A9 2015 Seamless. All r=
+ights
+reserved.
+
+--001a11491bb239d7190527097817
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br clear=3D"all"><div><div class=3D"gmail_signature"><div=
+ dir=3D"ltr"><div><div dir=3D"ltr"><div><div style=3D"color:rgb(80,0,80)"><=
+div><b style=3D"color:rgb(0,0,0);font-family:&#39;courier new&#39;,monospac=
+e">--------------------------------</b></div><div><b style=3D"color:rgb(0,0=
+,0);font-family:&#39;courier new&#39;,monospace"><br></b></div><div><b styl=
+e=3D"color:rgb(0,0,0);font-family:&#39;courier new&#39;,monospace">{=C2=A0<=
+/b><span style=3D"color:rgb(0,0,0);font-family:&#39;courier new&#39;,monosp=
+ace">name =C2=A0 =C2=A0 :=C2=A0</span><b style=3D"color:rgb(0,0,0);font-fam=
+ily:&#39;courier new&#39;,monospace">&quot;</b><b style=3D"color:rgb(34,34,=
+34)"><font face=3D"courier new, monospace">Some Guy</font></b><b style=3D=
+"color:rgb(0,0,0);font-family:&#39;courier new&#39;,monospace">&quot;,=C2=
+=A0</b></div><div><font face=3D"courier new, monospace"><font color=3D"#000=
+000"><b>=C2=A0=C2=A0</b>title =C2=A0 =C2=A0:=C2=A0</font></font><b style=3D=
+"color:rgb(0,0,0);font-family:&#39;courier new&#39;,monospace">&quot;</b><s=
+pan style=3D"color:rgb(0,0,0);font-family:&#39;courier new&#39;,monospace">=
+Software Engineer</span><b style=3D"color:rgb(0,0,0);font-family:&#39;couri=
+er new&#39;,monospace">&quot;</b><span style=3D"color:rgb(0,0,0);font-famil=
+y:&#39;courier new&#39;,monospace">,</span></div></div><div style=3D"color:=
+rgb(80,0,80)"><font face=3D"courier new, monospace"><font color=3D"#000000"=
+>=C2=A0 twitter =C2=A0:=C2=A0</font></font><b style=3D"color:rgb(0,0,0);fon=
+t-family:&#39;courier new&#39;,monospace">&quot;</b><font style=3D"color:rg=
+b(17,85,204)" face=3D"courier new, monospace"><a href=3D"http://twitter.com=
+/evanchooly" style=3D"color:rgb(17,85,204)" target=3D"_blank">@evanchooly</=
+a></font><b style=3D"color:rgb(0,0,0);font-family:&#39;courier new&#39;,mon=
+ospace">&quot;</b><font face=3D"courier new, monospace"><font color=3D"#000=
+000">,</font></font></div><div style=3D"color:rgb(80,0,80)"><font face=3D"c=
+ourier new, monospace"><font color=3D"#000000">=C2=A0 web =C2=A0 =C2=A0 =C2=
+=A0: </font></font><span style=3D"color:rgb(0,0,0);font-family:&#39;courier=
+ new&#39;,monospace"><b>[</b> &quot;<a href=3D"http://www.mongodb.com" targ=
+et=3D"_blank">mongodb.com</a>&quot;, </span><b style=3D"color:rgb(0,0,0);fo=
+nt-family:&#39;courier new&#39;,monospace">&quot;</b><font face=3D"courier =
+new, monospace"><font color=3D"#000000"><a href=3D"http://antwerkz.com/" st=
+yle=3D"color:rgb(17,85,204)" target=3D"_blank">antwerkz.com</a></font></fon=
+t><b style=3D"color:rgb(0,0,0);font-family:&#39;courier new&#39;,monospace"=
+>&quot;</b><span style=3D"color:rgb(0,0,0);font-family:&#39;courier new&#39=
+;,monospace"> <b>]</b></span><font face=3D"courier new, monospace"><font co=
+lor=3D"#000000">,</font></font></div><div style=3D"color:rgb(80,0,80)"><fon=
+t face=3D"courier new, monospace"><font color=3D"#000000">=C2=A0 location :=
+=C2=A0</font></font><b style=3D"color:rgb(0,0,0);font-family:&#39;courier n=
+ew&#39;,monospace">&quot;</b><font face=3D"courier new, monospace"><font co=
+lor=3D"#000000">New York, NY</font></font><b style=3D"color:rgb(0,0,0);font=
+-family:&#39;courier new&#39;,monospace">&quot;</b><span style=3D"font-fami=
+ly:&#39;courier new&#39;,monospace;color:rgb(51,51,51);line-height:19px">=
+=C2=A0</span><b style=3D"font-family:&#39;courier new&#39;,monospace;color:=
+rgb(51,51,51);line-height:19px">}</b></div></div></div></div></div></div></=
+div>
+<br><div class=3D"gmail_quote">---------- Forwarded message ----------<br>F=
+rom: <b class=3D"gmail_sendername">Do Not Reply</b> <span dir=3D"ltr">&lt;<=
+a href=3D"mailto:confirmation@seamless.com">confirmation@seamless.com</a>&g=
+t;</span><br>Date: Tue, Dec 15, 2015 at 10:02 AM<br>Subject: Confirmed! Len=
+wich by Lenny=E2=80=99s (43rd Street) received your order. Estimated Delive=
+ry: 11:45 a.m., on 12/15/15<br>To: <a href=3D"mailto:someguy@example.com=
+">someguy@example.com</a><br><br><br><u></u>                            =
+         <div marginheight=3D"0" marginwidth=3D"2">          <table align=
+=3D"center" cellpadding=3D"0" cellspacing=3D"0" width=3D"600">      <tbody>=
+<tr>          <td style=3D"padding-left:10px;padding-top:2px" align=3D"left=
+" valign=3D"top" width=3D"600">              <a href=3D"http://www.seamless=
+.com/" style=3D"color:#333399;text-decoration:none;font-weight:bold;font-fa=
+mily:Arial,Helvetica,sans-serif" target=3D"_blank">           <img style=3D=
+"border:0" alt=3D"Thank you for your Seamless order!" src=3D"https://www.se=
+amless.com/img/confEmail_logo-seamless.gif" height=3D"31" width=3D"207"></a=
+>          </td>      </tr>      <tr>          <td style=3D"padding-top:2px=
+" valign=3D"top">          <table align=3D"center" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"600">              <tbody><tr>           =
+       <td valign=3D"top">                      <table style=3D"border-top:=
+4px solid #cccccc" align=3D"center" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" width=3D"600">                          <tbody><tr>              =
+                <td valign=3D"top" width=3D"288">                          =
+        <div style=3D"font-family:Arial,Helvetica,sans-serif;font-size:18px=
+;padding-top:.25em;padding-bottom:.25em;line-height:22px;color:#444444;text=
+-align:left;font-weight:normal" align=3D"left">Lenwich by Lenny=E2=80=99s (=
+43rd Street)</div>                                  <div style=3D"margin-bo=
+ttom:5px;font-weight:normal;font-size:14px;padding-top:0em;padding-right:0e=
+m;padding-bottom:.25em;line-height:18px;font-family:Arial,Helvetica,sans-se=
+rif;color:#000000;text-align:left" align=3D"left">Phone: (212) 957-7800</di=
+v>                              </td>                              <td vali=
+gn=3D"top" width=3D"24">=C2=A0</td>                              <td valign=
+=3D"top" width=3D"288">                                  <div style=3D"font=
+-family:Arial,Helvetica,sans-serif;font-size:18px;padding-top:.25em;padding=
+-bottom:.25em;line-height:22px;color:#000000;text-align:left;font-weight:no=
+rmal" align=3D"left">Order #:<span style=3D"color:#c90117"> 1683750997=C2=
+=A0=C2=A0 </span></div>                                  <div style=3D"font=
+-family:Arial,Helvetica,sans-serif;padding-top:0em;padding-right:0em;paddin=
+g-bottom:.25em;font-size:12px;line-height:17px;color:#000000;text-align:lef=
+t;font-weight:normal" align=3D"left"><span style=3D"font-size:12px!importan=
+t">Ordered: </span>Tuesday, December 15, 2015 10:01 AM</div>               =
+               </td>                          </tr>                      </=
+tbody></table>                                                             =
+     <table style=3D"border-bottom:none!important;background-color:#ffffff!=
+important;padding-top:5px;padding-right:5px;padding-bottom:5px;padding-left=
+:5px;border-top:none!important" align=3D"center" bgcolor=3D"#ffffff" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"600">                  =
+        <tbody><tr>                              <td>                      =
+                <table align=3D"center" border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" width=3D"600">   <tbody><tr>       <td style=3D"background-co=
+lor:#ffffcc;border:1px dashed #cccca3;padding-top:5px;padding-right:5px;pad=
+ding-bottom:5px;padding-left:5px" colspan=3D"3" align=3D"center" bgcolor=3D=
+"#ffffcc" valign=3D"top">    <span style=3D"font-family:Arial,Helvetica,san=
+s-serif;font-size:18px;padding-top:0em;padding-right:0em;padding-bottom:0em=
+;line-height:22px;color:#444444;text-align:center;font-weight:bold">       =
+              <div>    </div>         Delivery on <span style=3D"color:#444=
+444">Tuesday, December 15, 2015</span> at <span style=3D"color:#c90117">11:=
+45 AM</span>     </span>           </td>   </tr>     </tbody></table>      =
+       <table style=3D"border-bottom:none;background-color:#ffffff;padding-=
+top:5px;padding-right:5px;padding-bottom:5px;padding-left:5px" align=3D"cen=
+ter" bgcolor=3D"#ffffff" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" w=
+idth=3D"600">   <tbody><tr>    <td>      <div>     <table style=3D"border-b=
+ottom:4px solid #cccccc;background-color:#f7f7f7;padding-top:5px;padding-ri=
+ght:5px;padding-bottom:5px;padding-left:5px;border-top:1px solid #cccccc" a=
+lign=3D"center" bgcolor=3D"#f7f7f7" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" width=3D"600">      <tbody><tr>      <td valign=3D"top" width=3D"=
+288">     <span style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1=
+4px;padding-bottom:.25em;line-height:18px;color:#000000;text-align:left;fon=
+t-weight:normal"><b>Deliver to: </b></span><br>      <span style=3D"font-fa=
+mily:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;margin:0em;=
+padding:0em;color:#000000;text-align:left">      Some  Guy</span><br>    =
+   <span style=3D"font-family:Arial,Helvetica,sans-serif;font-size:12px;lin=
+e-height:20px;margin:0em;padding:0em;color:#000000;text-align:left">MongoDB=
+</span><br>            <span style=3D"font-family:Arial,Helvetica,sans-seri=
+f;font-size:12px;line-height:20px;margin:0em;padding:0em;color:#000000;text=
+-align:left">232 West 44th Street</span><br>        <span style=3D"font-fam=
+ily:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;margin:0em;p=
+adding:0em;color:#000000;text-align:left">Use freight entrance at 232 W. 44=
+th Street</span><br>        <span style=3D"font-family:Arial,Helvetica,sans=
+-serif;font-size:12px;line-height:20px;margin:0em;padding:0em;color:#000000=
+;text-align:left">City: New York</span><br>       <span style=3D"font-famil=
+y:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;margin:0em;pad=
+ding:0em;color:#000000;text-align:left">Apt/Flat/Suite/Floor #: <span style=
+=3D"text-transform:uppercase">5</span></span><br>       <span style=3D"font=
+-size:14px;font-weight:normal;margin:0em;padding-top:0em;padding-right:0em;=
+padding-bottom:.25em;line-height:18px;font-family:Arial,Helvetica,sans-seri=
+f;color:#000000;text-align:left"><b>(718) 755-4370</b></span><br>    </td> =
+                          <td valign=3D"top" width=3D"288">      <span styl=
+e=3D"font-size:14px;font-weight:normal;margin-top:0em;margin-right:0em;marg=
+in-bottom:.125em;padding-top:0em;padding-right:0em;padding-bottom:.25em;lin=
+e-height:18px;font-family:Arial,Helvetica,sans-serif;color:#000000;text-ali=
+gn:left"><b>Delivery Instructions:<br></b></span>       <span style=3D"font=
+-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;margin:0=
+em;padding:0em;color:#000000;text-align:left"><b></b></span>       <span st=
+yle=3D"font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:20=
+px;margin:0em;padding:0em;color:#c90117;text-align:left"><br><b>** FUTURE O=
+RDER **</b></span>      <div style=3D"font-family:Arial,Helvetica,sans-seri=
+f;font-size:12px;line-height:20px;margin:0em;padding:0em;color:#000000;text=
+-align:left;font-weight:bold">Do not include plastic utensils, napkins, etc=
+.</div>          </td>         </tr>     </tbody></table></div>    </td>   =
+             </tr>  </tbody></table>                                       =
+                         </td>                          </tr>              =
+              <tr>      <td>          <table style=3D"background-color:#fff=
+fff" align=3D"center" bgcolor=3D"#ffffff" border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" width=3D"600">              <tbody><tr>                  <t=
+d colspan=3D"6" height=3D"5"></td>              </tr>              <tr>    =
+              <td width=3D"26">                <span style=3D"font-family:A=
+rial,Helvetica,sans-serif;font-size:18px;padding-top:.25em;padding-bottom:.=
+25em;line-height:22px;color:#000000;text-align:left;font-weight:normal"><sp=
+an style=3D"color:#c90117"><b>1</b></span></span>            </td>         =
+   <td style=3D"font-family:Arial,Helvetica,sans-serif;font-size:12px;line-=
+height:20px;margin:0em;padding:0em;color:#000000;text-align:left" align=3D"=
+left" width=3D"355"><b>Chicken Cheddar</b>            </td>                =
+  <td style=3D"font-family:Arial,Helvetica,sans-serif;font-size:12px;line-h=
+eight:20px;margin:0em;padding:0em;color:#000000;text-align:left" align=3D"l=
+eft" width=3D"59">                      $7.99                  </td>       =
+     <td style=3D"font-family:Arial,Helvetica,sans-serif;font-size:12px;lin=
+e-height:20px;margin:0em;padding:0em;color:#000000;text-align:left" align=
+=3D"left" width=3D"24">                x 1            </td>            <td =
+style=3D"font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:=
+20px;margin:0em;padding:0em;color:#000000;text-align:left" align=3D"left" w=
+idth=3D"25">                =3D            </td>            <td style=3D"fo=
+nt-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;margin=
+:0em;padding:0em;color:#000000;text-align:left" align=3D"left" width=3D"81"=
+>                $8.49            </td>              </tr>           <tr>  =
+                <td width=3D"26">=C2=A0</td>                  <td style=3D"=
+font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;marg=
+in:0em;padding:0em;color:#000000;text-align:left" align=3D"left" width=3D"3=
+55">                        <p style=3D"font-size:12px;margin:0em;padding:0=
+em;font-family:Arial,Helvetica,sans-serif;line-height:18px;color:#000000;te=
+xt-align:left;list-style:disc">=C2=A0=C2=A0=C2=A0 =E2=80=A2 =C2=A0=C2=A0=C2=
+=A0Sourdough Bread</p>            </td>                  <td style=3D"font-=
+family:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;margin:0e=
+m;padding:0em;color:#000000;text-align:left" align=3D"left" width=3D"59">  =
+                  =C2=A0                  </td>                  <td style=
+=3D"font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;=
+margin:0em;padding:0em;color:#000000;text-align:left" align=3D"left" width=
+=3D"24">=C2=A0</td>                  <td style=3D"font-family:Arial,Helveti=
+ca,sans-serif;font-size:12px;line-height:20px;margin:0em;padding:0em;color:=
+#000000;text-align:left" align=3D"left" width=3D"25&quot;">=C2=A0</td>     =
+      </tr>           <tr>                  <td width=3D"26">=C2=A0</td>   =
+               <td style=3D"font-family:Arial,Helvetica,sans-serif;font-siz=
+e:12px;line-height:18px;margin:0em;padding:0em;color:#000000;text-align:lef=
+t" align=3D"left" width=3D"355">                        <p style=3D"font-si=
+ze:12px;margin:0em;padding:0em;font-family:Arial,Helvetica,sans-serif;line-=
+height:18px;color:#000000;text-align:left;list-style:disc">=C2=A0=C2=A0=C2=
+=A0 =E2=80=A2 =C2=A0=C2=A0=C2=A0Lightly Toasted</p>            </td>       =
+           <td style=3D"font-family:Arial,Helvetica,sans-serif;font-size:12=
+px;line-height:20px;margin:0em;padding:0em;color:#000000;text-align:left" a=
+lign=3D"left" width=3D"59">                    =C2=A0                  </td=
+>                  <td style=3D"font-family:Arial,Helvetica,sans-serif;font=
+-size:12px;line-height:20px;margin:0em;padding:0em;color:#000000;text-align=
+:left" align=3D"left" width=3D"24">=C2=A0</td>                  <td style=
+=3D"font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;=
+margin:0em;padding:0em;color:#000000;text-align:left" align=3D"left" width=
+=3D"25&quot;">=C2=A0</td>           </tr>           <tr>                  <=
+td width=3D"26">=C2=A0</td>                  <td style=3D"font-family:Arial=
+,Helvetica,sans-serif;font-size:12px;line-height:18px;margin:0em;padding:0e=
+m;color:#000000;text-align:left" align=3D"left" width=3D"355">             =
+           <p style=3D"font-size:12px;margin:0em;padding:0em;font-family:Ar=
+ial,Helvetica,sans-serif;line-height:18px;color:#000000;text-align:left;lis=
+t-style:disc">=C2=A0=C2=A0=C2=A0 =E2=80=A2 =C2=A0=C2=A0=C2=A0Onion</p>     =
+       </td>                  <td style=3D"font-family:Arial,Helvetica,sans=
+-serif;font-size:12px;line-height:20px;margin:0em;padding:0em;color:#000000=
+;text-align:left" align=3D"left" width=3D"59">                    =C2=A0   =
+               </td>                  <td style=3D"font-family:Arial,Helvet=
+ica,sans-serif;font-size:12px;line-height:20px;margin:0em;padding:0em;color=
+:#000000;text-align:left" align=3D"left" width=3D"24">=C2=A0</td>          =
+        <td style=3D"font-family:Arial,Helvetica,sans-serif;font-size:12px;=
+line-height:20px;margin:0em;padding:0em;color:#000000;text-align:left" alig=
+n=3D"left" width=3D"25&quot;">=C2=A0</td>           </tr>           <tr>   =
+               <td width=3D"26">=C2=A0</td>                  <td style=3D"f=
+ont-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;margi=
+n:0em;padding:0em;color:#000000;text-align:left" align=3D"left" width=3D"35=
+5">                        <p style=3D"font-size:12px;margin:0em;padding:0e=
+m;font-family:Arial,Helvetica,sans-serif;line-height:18px;color:#000000;tex=
+t-align:left;list-style:disc">=C2=A0=C2=A0=C2=A0 =E2=80=A2 =C2=A0=C2=A0=C2=
+=A0Sweet Pepper</p>            </td>                  <td style=3D"font-fam=
+ily:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;margin:0em;p=
+adding:0em;color:#000000;text-align:left" align=3D"left" width=3D"59">     =
+           $0.50                  </td>                  <td style=3D"font-=
+family:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;margin:0e=
+m;padding:0em;color:#000000;text-align:left" align=3D"left" width=3D"24">=
+=C2=A0</td>                  <td style=3D"font-family:Arial,Helvetica,sans-=
+serif;font-size:12px;line-height:20px;margin:0em;padding:0em;color:#000000;=
+text-align:left" align=3D"left" width=3D"25&quot;">=C2=A0</td>           </=
+tr>           <tr>                  <td width=3D"26">=C2=A0</td>           =
+       <td style=3D"font-family:Arial,Helvetica,sans-serif;font-size:12px;l=
+ine-height:18px;margin:0em;padding:0em;color:#000000;text-align:left" align=
+=3D"left" width=3D"355">                        <p style=3D"font-size:12px;=
+margin:0em;padding:0em;font-family:Arial,Helvetica,sans-serif;line-height:1=
+8px;color:#000000;text-align:left;list-style:disc">=C2=A0=C2=A0=C2=A0 =E2=
+=80=A2 =C2=A0=C2=A0=C2=A0Chipotle Ranch</p>            </td>               =
+   <td style=3D"font-family:Arial,Helvetica,sans-serif;font-size:12px;line-=
+height:20px;margin:0em;padding:0em;color:#000000;text-align:left" align=3D"=
+left" width=3D"59">                    =C2=A0                  </td>       =
+           <td style=3D"font-family:Arial,Helvetica,sans-serif;font-size:12=
+px;line-height:20px;margin:0em;padding:0em;color:#000000;text-align:left" a=
+lign=3D"left" width=3D"24">=C2=A0</td>                  <td style=3D"font-f=
+amily:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;margin:0em=
+;padding:0em;color:#000000;text-align:left" align=3D"left" width=3D"25&quot=
+;">=C2=A0</td>           </tr>   </tbody></table>      </td>  </tr>      <t=
+r>      <td>              <table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"600">                       <tbody><tr>                    =
+  <td style=3D"border-top:1px solid #cccccc;padding-top:2px" valign=3D"midd=
+le" width=3D"340">=C2=A0</td>                      <td style=3D"border-top:=
+1px solid #cccccc;padding-top:2px" align=3D"right" valign=3D"middle" width=
+=3D"98"><span style=3D"font-family:Arial,Helvetica,sans-serif;font-size:12p=
+x;line-height:20px;margin:0em;padding:0em;color:#000000;text-align:right">P=
+roduct Total: =C2=A0</span></td>                      <td style=3D"border-t=
+op:1px solid #cccccc;padding-top:2px;font-family:Arial,Helvetica,sans-serif=
+;font-size:12px;line-height:20px;margin:0em;color:#000000;text-align:left" =
+align=3D"left" valign=3D"middle" width=3D"30">=C2=A0=3D</td>               =
+       <td style=3D"border-top:1px solid #cccccc;padding-top:2px" align=3D"=
+left" valign=3D"middle" width=3D"76"><span style=3D"font-family:Arial,Helve=
+tica,sans-serif;font-size:12px;line-height:20px;margin:0em;padding:0em;colo=
+r:#000000;text-align:left">$8.49</span></td>                  </tr>        =
+          <tr>                      <td valign=3D"middle" width=3D"340">=C2=
+=A0</td>                      <td align=3D"right" valign=3D"middle" width=
+=3D"98"><span style=3D"font-family:Arial,Helvetica,sans-serif;font-size:12p=
+x;line-height:20px;margin:0em;padding:0em;color:#000000;text-align:right">S=
+ales Tax: =C2=A0</span></td>                      <td style=3D"font-family:=
+Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;margin:0em;color=
+:#000000;text-align:left" align=3D"left" valign=3D"middle" width=3D"30">=C2=
+=A0=3D</td>                      <td align=3D"left" valign=3D"middle" width=
+=3D"76"><span style=3D"font-family:Arial,Helvetica,sans-serif;font-size:12p=
+x;line-height:20px;margin:0em;padding:0em;color:#000000;text-align:left">$0=
+.75</span></td>                  </tr>                  <tr>               =
+       <td valign=3D"middle" width=3D"340">=C2=A0</td>                     =
+ <td align=3D"right" valign=3D"middle" width=3D"98"><span style=3D"font-fam=
+ily:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;margin:0em;p=
+adding:0em;color:#000000;text-align:right">Tip Amount: =C2=A0</span></td>  =
+                    <td style=3D"font-family:Arial,Helvetica,sans-serif;fon=
+t-size:12px;line-height:20px;margin:0em;color:#000000;text-align:left" alig=
+n=3D"left" valign=3D"middle" width=3D"30">=C2=A0=3D</td>                   =
+   <td align=3D"left" valign=3D"middle" width=3D"76"><span style=3D"font-fa=
+mily:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;margin:0em;=
+padding:0em;color:#000000;text-align:left">$2.00</span></td>               =
+   </tr>                          <tr>                              <td val=
+ign=3D"middle" width=3D"340">=C2=A0</td>                              <td a=
+lign=3D"right" valign=3D"middle" width=3D"98"><span style=3D"font-family:Ar=
+ial,Helvetica,sans-serif;font-size:12px;line-height:20px;margin:0em;padding=
+:0em;color:#c90117;text-align:right;font-weight:bold">Grand Total: =C2=A0</=
+span></td>                              <td style=3D"font-family:Arial,Helv=
+etica,sans-serif;font-size:12px;line-height:20px;margin:0em;color:#c90117;t=
+ext-align:left" align=3D"left" valign=3D"middle" width=3D"30">=C2=A0=3D</td=
+>                              <td align=3D"left" valign=3D"middle" width=
+=3D"76"><span style=3D"font-family:Arial,Helvetica,sans-serif;font-size:12p=
+x;line-height:20px;margin:0em;padding:0em;color:#c90117;text-align:left;fon=
+t-weight:bold">$11.24</span></td>                          </tr>           =
+     <tr>                  <td colspan=3D"6" height=3D"5" valign=3D"bottom"=
+></td>                </tr>        </tbody></table>    </td>    </tr>      =
+    <tr>              <td>           <table style=3D"width:600" align=3D"ce=
+nter" border=3D"0" width=3D"600">            </table>              </td>   =
+       </tr>    <tr>    <td>        <table style=3D"border-top:5px solid #c=
+ccccc" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"600">     =
+     <tbody><tr>                  <td valign=3D"top" width=3D"200"><span st=
+yle=3D"font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:20=
+px;margin:0em;padding:0em;color:#000000;text-align:left"> <b>              =
+Allocated Member:             </b></span>      </td>         <td valign=3D"=
+top" width=3D"200"><span style=3D"font-family:Arial,Helvetica,sans-serif;fo=
+nt-size:12px;line-height:20px;margin:0em;padding:0em;color:#000000;text-ali=
+gn:left"><b>              Expense Code:          </b></span>               =
+   </td>         <td valign=3D"top" width=3D"200"><span style=3D"font-famil=
+y:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;margin:0em;pad=
+ding:0em;color:#000000;text-align:left"><b>Amount:</b></span></td>     </tr=
+>     <tr>         <td style=3D"font-family:Arial,Helvetica,sans-serif;font=
+-size:12px;line-height:20px;margin:0em;padding:0em;color:#000000;text-align=
+:left" align=3D"left" valign=3D"top" width=3D"200">             <span style=
+=3D"font-size:12px;margin:0em;padding-bottom:4px;line-height:20px;font-fami=
+ly:Arial,Helvetica,sans-serif;color:#000000;text-align:left">              =
+Some  Guy          </span>         </td>         <td style=3D"font-family=
+:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;margin:0em;padd=
+ing:0em;color:#000000;text-align:left" align=3D"left" valign=3D"top" width=
+=3D"200">             <span style=3D"font-size:12px;margin:0em;padding-bott=
+om:4px;line-height:20px;font-family:Arial,Helvetica,sans-serif;color:#00000=
+0;text-align:left">           </span>         </td>         <td style=3D"fo=
+nt-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;margin=
+:0em;padding:0em;color:#000000;text-align:left" align=3D"left" valign=3D"to=
+p" width=3D"200">         <span style=3D"font-size:12px;margin:0em;padding-=
+bottom:4px;line-height:20px;font-family:Arial,Helvetica,sans-serif;color:#0=
+00000;text-align:left">      $11.24     </span></td></tr>     <tr>         =
+<td style=3D"border-top:1px dashed #cccccc;padding-top:2px" valign=3D"top" =
+width=3D"200"><span style=3D"font-family:Arial,Helvetica,sans-serif;font-si=
+ze:12px;line-height:20px;margin:0em;padding:0em;color:#000000;text-align:le=
+ft"><b>Payment Information</b></span></td>         <td style=3D"border-top:=
+1px dashed #cccccc;padding-top:2px" valign=3D"top" width=3D"200"><span styl=
+e=3D"font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px=
+;margin:0em;padding:0em;color:#000000;text-align:left"><b>Amount</b></span>=
+</td>         <td style=3D"border-top:1px dashed #cccccc;padding-top:2px" v=
+align=3D"top" width=3D"200"><span style=3D"font-family:Arial,Helvetica,sans=
+-serif;font-size:12px;line-height:20px;margin:0em;padding:0em;color:#000000=
+;text-align:left"><b>Order Type</b></span></td>     </tr>         <tr>     =
+        <td style=3D"font-family:Arial,Helvetica,sans-serif;font-size:12px;=
+line-height:20px;margin:0em;padding:0em;color:#000000;text-align:left">Line=
+ of Credit</td>                 <td style=3D"font-family:Arial,Helvetica,sa=
+ns-serif;font-size:12px;line-height:20px;margin:0em;padding:0em;color:#0000=
+00;text-align:left">$11.24</td>             <td style=3D"font-family:Arial,=
+Helvetica,sans-serif;font-size:12px;line-height:20px;margin:0em;padding:0em=
+;color:#000000;text-align:left">Firm</td>                  </tr>        </t=
+body></table>    </td>       </tr>  <tr>      <td>     <table align=3D"cent=
+er" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"600">        =
+      <tbody><tr>        <td>        <span style=3D"font-family:Arial,Helve=
+tica,sans-serif;font-size:12px;line-height:20px;margin:0em;padding-top:2px;=
+color:#000000;text-align:left">For food or delivery/pickup related issues, =
+please contact Lenwich by Lenny=E2=80=99s (43rd Street) at <b style=3D"back=
+ground-color:#ffffaa;font-weight:bold">(212) 957-7800</b>        <br>      =
+  </span>    </td>       </tr>          <tr>              <td style=3D"font=
+-size:10px;margin:0em;font-family:Arial,Helvetica,sans-serif;line-height:16=
+px;color:#999999;padding-top:5px;text-align:left;border-top:4px solid #cccc=
+cc" align=3D"center" valign=3D"top"><a href=3D"http://www.seamless.com/cont=
+act-us/" style=3D"font-weight:bold;font-family:Arial,Helvetica,sans-serif;t=
+ext-decoration:underline;color:#999999" target=3D"_blank"><span style=3D"co=
+lor:#999999">Contact Us</span></a> =E2=80=A2 <a href=3D"http://www.seamless=
+.com/business/privacy.html" style=3D"font-weight:bold;font-family:Arial,Hel=
+vetica,sans-serif;text-decoration:underline;color:#999999" target=3D"_blank=
+"><span style=3D"color:#999999">Privacy Policy</span></a> =C2=A9 2015 Seaml=
+ess. All rights reserved.</td>          </tr>   </tbody></table>  </td>  </=
+tr>                                                 </tbody></table>       =
+           </td>              </tr>          </tbody></table>          </td=
+>      </tr>  </tbody></table>         </div>     </div><br></div>
+
+--001a11491bb239d7190527097817--

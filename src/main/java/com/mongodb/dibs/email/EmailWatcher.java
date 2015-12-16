@@ -9,19 +9,14 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Store;
-import javax.mail.event.MessageCountAdapter;
-import javax.mail.event.MessageCountEvent;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 abstract class EmailWatcher implements Runnable {
     private static final Logger LOG = LoggerFactory.getLogger(EmailWatcher.class);
 
     private final String email;
     private final String password;
-    private final long delay;
     private Properties props = new Properties();
-    private boolean running = true;
     private Folder inbox;
     private Folder problems;
     private Store store;
@@ -31,7 +26,6 @@ abstract class EmailWatcher implements Runnable {
         this.password = password;
 
         props.setProperty("mail.store.protocol", "imaps");
-        delay = TimeUnit.MINUTES.toMillis(1);
     }
 
     @Override
@@ -58,8 +52,8 @@ abstract class EmailWatcher implements Runnable {
                     }
                 }
             }
-        } catch (MessagingException e) {
-            LOG.error(e.getMessage(), e);
+        } catch (Exception e) {
+            LOG.error(e.getClass().getSimpleName() + ":" + e.getMessage(), e);
         } finally {
             try {
                 cleanUp();
@@ -87,29 +81,5 @@ abstract class EmailWatcher implements Runnable {
         return folder;
     }
 
-    public void stop() {
-        running = false;
-    }
-
     protected abstract void process(final Message message) throws MessagingException;
-
-    private class InboxListener extends MessageCountAdapter {
-        @Override
-        public void messagesAdded(final MessageCountEvent event) {
-            for (Message message : event.getMessages()) {
-                System.out.println("message = " + message);
-                try {
-                    process(message);
-                } catch (Exception e) {
-                    try {
-                        LOG.error(e.getMessage(), e);
-                        inbox.copyMessages(new Message[]{message}, problems);
-                    } catch (MessagingException e1) {
-                        LOG.error(e.getMessage(), e);
-                    }
-                }
-            }
-
-        }
-    }
 }
