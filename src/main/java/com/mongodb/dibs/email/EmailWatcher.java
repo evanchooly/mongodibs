@@ -75,7 +75,7 @@ abstract class EmailWatcher implements Runnable {
         }
     }
 
-    private Folder openFolder(final Store store, final String name) throws MessagingException {
+    public static Folder openFolder(final Store store, final String name) throws MessagingException {
         Folder folder = store.getFolder(name);
         folder.open(Folder.READ_WRITE);
         return folder;

@@ -161,7 +161,7 @@ public class DibsResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public String claim(@Restricted(Authority.ROLE_PUBLIC) User user, final JsonNode node) throws JsonProcessingException {
         String orderId = node.get("id").textValue();
-        String claimant = user.getEmail();
+        String claimant = node.get("email").textValue();
         Query<Order> filter = ds.createQuery(Order.class)
                                 .filter("id", new ObjectId(orderId));
         filter.or(
@@ -187,13 +187,16 @@ public class DibsResource {
                 e.printStackTrace();
                 mapper.writeValueAsString(response);
             }
+            return mapper.writeValueAsString(order);
         } else {
             order = ds.createQuery(Order.class)
                       .filter("id", new ObjectId(orderId))
                       .get();
+            Map<String, Object> response = new LinkedHashMap<>();
+                            response.put("ok", 0);
+                            response.put("claimedBy", Dibs.claimedBy(order.getClaimedBy()));
+            return mapper.writeValueAsString(response);
         }
-
-        return mapper.writeValueAsString(order);
     }
 
     private void notifyDelivery(final String email, final Order order) throws EmailException {
